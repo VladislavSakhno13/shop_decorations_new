@@ -19,10 +19,16 @@
         exit(json_encode($data));
     }
     else if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        $sqlmetal = $conect->query("SELECT `id` FROM `metal_products` WHERE $input[metal] ");
+        $sqltype = $conect->query("SELECT `id` FROM `type_products` $input[type]");
+        $sqlrock = $conect->query("SELECT `id` FROM `rock_products` $input[rock]");
+        $id_metal=$sqlmetal->fetch_assoc();
+        $id_type=$sqlmetal->fetch_assoc();
+        $id_rock=$sqlmetal->fetch_assoc();
 
         $conect->query("INSERT INTO products (`metal_product`,`type_product`,`rock_product`,`img`,`name`,`cost`,`sku`,`discription`)
-         VALUES('$input[metal_product]','$input[type_product]',
-         '$input[rock_product]','$input[img]','$input[name]','$input[cost]','$input[sku]','$input[discription]')");
+         VALUES($id_metal,$id_type,
+         $id_rock,'$input[img]','$input[name]','$input[cost]','$input[sku]','$input[discription]')");
 
           $sql = $conect->query("SELECT * FROM products ORDER BY id DESC LIMIT 1");
           $data = $sql->fetch_assoc();
