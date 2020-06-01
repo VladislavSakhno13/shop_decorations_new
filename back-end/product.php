@@ -35,13 +35,7 @@
 
     }
     else if($_SERVER['REQUEST_METHOD'] == 'PUT'){
-        $sqlmetal = $conect->query("SELECT `id` FROM `metal_products` WHERE `metal`= $input[metal] ");
-        $sqltype = $conect->query("SELECT `id` FROM `type_products` WHERE `type` = $input[type]");
-        $sqlrock = $conect->query("SELECT `id` FROM `rock_products` WHERE `rock`= $input[rock]");
-        $id_metal= $sqlmetal->fetch_assoc();
-        $id_type= $sqltype->fetch_assoc();
-        $id_rock= $sqlrock->fetch_assoc();
-        echo(json_decode($id_metal));
+
     }
     else if($_SERVER['REQUEST_METHOD'] == 'DELETE'){
         
