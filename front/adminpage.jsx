@@ -1,7 +1,6 @@
 import React from 'react';
-import {Link, BrowserRouter}  from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Form,Button} from 'react-bootstrap';
+import {Form,Button,Table} from 'react-bootstrap';
 import axios from 'axios';
 
 
@@ -51,6 +50,12 @@ export default class Admin_page extends React.Component{
     img(event){
         this.setState({img:event.target.value});
     }
+    Get_All_Product(){
+        axios.get('./backend/product.php')
+        .then(function(response){
+            console.log(response.data);
+        })
+    }
     Post_All_DataProduct(){
        let Products_data = {
             metal:this.state.metal,
@@ -62,12 +67,9 @@ export default class Admin_page extends React.Component{
             cost:this.state.cost,
             img:"img"
          };
-         axios.post('./back-end/product.php',JSON.stringify(Products_data))
+         axios.post('./backend/product.php',JSON.stringify(Products_data))
          .then(function(response){
-            console.log(123);
-         })
-         .catch(function(error){
-             console.log(error.response)
+            console.log(response.data);
          })
     }
     render(){
@@ -120,12 +122,43 @@ export default class Admin_page extends React.Component{
                                 </Form.Group>
                         </Form>
 
-                        <Button variant="primary">Получить товары</Button>{' '}
+                        <Button variant="primary" onClick={this.Get_All_Product}>Получить товары</Button>{' '}
                         <Button variant="secondary" onClick={this.Post_All_DataProduct}>Добавить товар</Button>{' '}
                    
 
                     </Form.Group>
             </Form>
+
+
+            <Table striped bordered hover size="sm">
+                        <thead>
+                            <tr>
+                            <th>#</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Username</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <td>1</td>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                            </tr>
+                            <tr>
+                            <td>2</td>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>@fat</td>
+                            </tr>
+                            <tr>
+                            <td>3</td>
+                            <td colSpan="2">Larry the Bird</td>
+                            <td>@twitter</td>
+                            </tr>
+                        </tbody>
+            </Table>
             </div>
         )
     }
