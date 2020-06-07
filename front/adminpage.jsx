@@ -72,12 +72,25 @@ export default class Admin_page extends React.Component{
                 td_img.innerHTML = response.data[i].img;
 
                 let td_name = document.createElement('td');
-                
+                td_name.innerHTML = response.data[i].name;
+
                 let td_cost = document.createElement('td');
+                td_cost.innerHTML = response.data[i].cost;
                 let td_sku = document.createElement('td');
+                td_sku.innerHTML = response.data[i].SKU;
+                
                 let td_discription = document.createElement('td');
+                td_discription.innerHTML = response.data[i].discription;
                 
                 tr.appendChild(td_id);
+                tr.appendChild(td_metal);
+                tr.appendChild(td_type);
+                tr.appendChild(td_rock);
+                tr.appendChild(td_img);
+                tr.appendChild(td_name);
+                tr.appendChild(td_cost);
+                tr.appendChild(td_sku);
+                tr.appendChild(td_discription);
                 document.getElementById('table_product').appendChild(tr);
             }
             
