@@ -53,7 +53,34 @@ export default class Admin_page extends React.Component{
     Get_All_Product(){
         axios.get('./backend/product.php')
         .then(function(response){
-            console.log(response.data);
+            for(let i=0;i<response.data.length;i++){
+                let tr = document.createElement('tr');
+
+                let td_id = document.createElement('td');
+                td_id.innerHTML = i+1;
+    
+                let td_metal = document.createElement('td');
+                td_metal.innerHTML = response.data[i].metal;
+
+                let td_type = document.createElement('td');
+                td_type.innerHTML = response.data[i].type;
+
+                let td_rock = document.createElement('td');
+                td_rock.innerHTML = response.data[i].rock;
+
+                let td_img = document.createElement('td');
+                td_img.innerHTML = response.data[i].img;
+
+                let td_name = document.createElement('td');
+                
+                let td_cost = document.createElement('td');
+                let td_sku = document.createElement('td');
+                let td_discription = document.createElement('td');
+                
+                tr.appendChild(td_id);
+                document.getElementById('table_product').appendChild(tr);
+            }
+            
         })
     }
     Post_All_DataProduct(){
@@ -133,30 +160,19 @@ export default class Admin_page extends React.Component{
             <Table striped bordered hover size="sm">
                         <thead>
                             <tr>
-                            <th>#</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
+                            <th>id</th>
+                            <th>Метал</th>
+                            <th>Тип</th>
+                            <th>Камень</th>
+                            <th>Иконка</th>
+                            <th>Название</th>
+                            <th>Цена</th>
+                            <th>SKU</th>
+                            <th> Описание</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                            <td>1</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            </tr>
-                            <tr>
-                            <td>2</td>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                            </tr>
-                            <tr>
-                            <td>3</td>
-                            <td colSpan="2">Larry the Bird</td>
-                            <td>@twitter</td>
-                            </tr>
+                        <tbody id="table_product">
+            
                         </tbody>
             </Table>
             </div>

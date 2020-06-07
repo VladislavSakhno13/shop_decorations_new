@@ -1,10 +1,11 @@
 <?php
     $inputJSON = file_get_contents('php://input');
      $input = json_decode($inputJSON, TRUE);
-     $conect = new mysqli('127.0.0.1','root','','decoration_shop');
+     require_once 'connection.php';
+     $conect = new mysqli($host,$user,$password,$database);
      if($_SERVER['REQUEST_METHOD'] == 'GET'){
             $data = array();
-            $sql = $conect->query("SELECT * FROM products");
+            $sql = $conect->query("SELECT metal,type,rock,img,cost,sku,discription, name FROM products LEFT JOIN metal_products ON products.metal_product = metal_products.id LEFT JOIN rocks_products ON products.rock_product = rocks_products.id LEFT JOIN type_products ON products.type_product = type_products.id");
             while ($d = $sql->fetch_assoc()) {
                 $data[] = $d;   
             }
