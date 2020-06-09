@@ -1,7 +1,7 @@
 <?php
     $inputJSON = file_get_contents('php://input');
      $input = json_decode($inputJSON, TRUE);
-     $conect = new mysqli('127.0.0.1','root','','decoration_shop');
+     $conect = new mysqli($host,$user,$password,$database);
      if($_SERVER['REQUEST_METHOD'] == 'GET'){
         if(isset($_GET['id'])){
             $id = $conect->real_escape_string($_GET['id']);
@@ -26,6 +26,7 @@
 
      }
      else if($_SERVER['REQUEST_METHOD'] == 'PUT'){
+         
 
      }
      else if($_SERVER['REQUEST_METHOD'] == 'DELETE'){
