@@ -11,7 +11,7 @@ export default class Admin_page extends React.Component{
            metal:"",
            type:"",
            rock:"",
-           SKU:"",
+           sku:"",
            name:"",
            discription:"",
            cost:"",
@@ -20,12 +20,12 @@ export default class Admin_page extends React.Component{
         this.metal = this.metal.bind(this);
         this.type = this.type.bind(this);
         this.rock = this.rock.bind(this);
-        this.SKU = this.SKU.bind(this);
+        this.sku = this.sku.bind(this);
         this.discription = this.discription.bind(this);
         this.name = this.name.bind(this);
         this.cost = this.cost.bind(this);
         this.Post_All_DataProduct=this.Post_All_DataProduct.bind(this);
-    }
+    }//вот это завернуть в одну функцию
     metal(event,name){
         this.setState({metal:event.target.value});
     }
@@ -38,8 +38,8 @@ export default class Admin_page extends React.Component{
     discription(event){
         this.setState({discription:event.target.value});
     }
-    SKU(event){
-        this.setState({SKU:event.target.value});
+    sku(event){
+        this.setState({sku:event.target.value});
     }
     name(event){
         this.setState({name:event.target.value});
@@ -49,7 +49,7 @@ export default class Admin_page extends React.Component{
     }
     img(event){
         this.setState({img:event.target.value});
-    }
+    }//аш до сюда
     Get_All_Product(){
         axios.get('./backend/product.php')
         .then(function(response){
@@ -77,7 +77,7 @@ export default class Admin_page extends React.Component{
                 let td_cost = document.createElement('td');
                 td_cost.innerHTML = response.data[i].cost;
                 let td_sku = document.createElement('td');
-                td_sku.innerHTML = response.data[i].SKU;
+                td_sku.innerHTML = response.data[i].sku;
                 
                 let td_discription = document.createElement('td');
                 td_discription.innerHTML = response.data[i].discription;
@@ -101,7 +101,7 @@ export default class Admin_page extends React.Component{
             metal:this.state.metal,
             type:this.state.type,
             rock:this.state.rock,
-            SKU:this.state.SKU,
+            sku:this.state.sku,
             name:this.state.name,
             discription:this.state.discription,
             cost:this.state.cost,
@@ -120,6 +120,7 @@ export default class Admin_page extends React.Component{
                     <Form.Group controlId="exampleForm.ControlSelect1">
                         <Form.Label>Тип метала</Form.Label>
                         <Form.Control as="select" onChange={this.metal} name="metal">
+                        <option>Выберите метал изделия</option>
                         <option>Серебро</option>
                         <option>Платина</option>
                         <option>Латунь</option>
@@ -128,6 +129,7 @@ export default class Admin_page extends React.Component{
 
                         <Form.Label>Тип Товара</Form.Label>
                         <Form.Control as="select" onChange={this.type}>
+                        <option>Выберите тип изделия</option>
                         <option>Кольцо</option>
                         <option>Серьги</option>
                         <option>Цепочка</option>
@@ -136,14 +138,15 @@ export default class Admin_page extends React.Component{
 
                         <Form.Label>Тип камня</Form.Label>
                         <Form.Control as="select" onChange={this.rock}>
+                        <option>Выберите камень изделия</option>
                         <option>Алмаз</option>
                         <option>Топаз</option>
                         <option>Рубин</option>
                         <option>Фианит</option>
                         </Form.Control>
 
-                        <Form.Label>SKU</Form.Label>
-                        <Form.Control size="lg" type="text" placeholder="SKU" onChange={this.SKU}/>
+                        <Form.Label>sku</Form.Label>
+                        <Form.Control size="lg" type="text" placeholder="sku" onChange={this.sku}/>
 
                         <Form.Group controlId="exampleForm.ControlTextarea1">
                         <Form.Label>Описание товара</Form.Label>
@@ -180,7 +183,7 @@ export default class Admin_page extends React.Component{
                             <th>Иконка</th>
                             <th>Название</th>
                             <th>Цена</th>
-                            <th>SKU</th>
+                            <th>sku</th>
                             <th> Описание</th>
                             </tr>
                         </thead>
