@@ -48,7 +48,11 @@ export default class Admin_page extends React.Component{
         this.setState({cost:event.target.value});
     }
     img(event){
+
         console.log(event);
+
+        this.setState({img:event.target.value});
+ 
     }//аш до сюда
     Get_All_Product(){
         axios.get('./backend/product.php')
@@ -159,16 +163,49 @@ export default class Admin_page extends React.Component{
                         <Form.Label>Цена на товар</Form.Label>
                         <Form.Control size="lg" type="text" placeholder="Цена на товар" onChange={this.cost} />
 
+
                       <div>
                           <input type="file" onChange={this.img}/>
                       </div>
 
                         
+
+                        <Form>
+                                <Form.Group>
+                                    <Form.File id="exampleFormControlFile1" label="Выберите иконку товара" onChange={this.img}/>
+                                </Form.Group>
+                        </Form>
+
+                        <Button variant="primary" onClick={this.Get_All_Product}>Получить товары</Button>{' '}
+
                         <Button variant="secondary" onClick={this.Post_All_DataProduct}>Добавить товар</Button>{' '}
                    
 
                     </Form.Group>
             </Form>
+
+
+
+
+            <Table striped bordered hover size="sm">
+                        <thead>
+                            <tr>
+                            <th>id</th>
+                            <th>Метал</th>
+                            <th>Тип</th>
+                            <th>Камень</th>
+                            <th>Иконка</th>
+                            <th>Название</th>
+                            <th>Цена</th>
+                            <th>sku</th>
+                            <th> Описание</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table_product">
+            
+                        </tbody>
+            </Table>
+
             </div>
         )
     }
