@@ -17,7 +17,7 @@
         exit(json_encode($data));
      }
      else if($_SERVER['REQUEST_METHOD'] == 'POST'){
-        $date_sign_up = date('l jS \of F Y h:i:s A');;
+        $date_sign_up = date('l jS \of F Y h:i:s A');
         $conect->query("INSERT INTO customers (`FIO`,`date`,`login`,`password`) VALUES('$input[FIO]','$date_sign_up','$input[login]','$input[password]')");
 
          $sql = $conect->query("SELECT * FROM customers ORDER BY id DESC LIMIT 1");

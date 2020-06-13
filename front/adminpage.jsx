@@ -176,35 +176,12 @@ export default class Admin_page extends React.Component{
                                 </Form.Group>
                         </Form>
 
-                        <Button variant="primary" onClick={this.Get_All_Product}>Получить товары</Button>{' '}
 
                         <Button variant="secondary" onClick={this.Post_All_DataProduct}>Добавить товар</Button>{' '}
                    
 
                     </Form.Group>
             </Form>
-
-
-
-
-            <Table striped bordered hover size="sm">
-                        <thead>
-                            <tr>
-                            <th>id</th>
-                            <th>Метал</th>
-                            <th>Тип</th>
-                            <th>Камень</th>
-                            <th>Иконка</th>
-                            <th>Название</th>
-                            <th>Цена</th>
-                            <th>sku</th>
-                            <th> Описание</th>
-                            </tr>
-                        </thead>
-                        <tbody id="table_product">
-            
-                        </tbody>
-            </Table>
 
             </div>
         )
