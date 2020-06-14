@@ -40,12 +40,15 @@ export default class Getproducts extends React.Component{
                 add_to_basket.onclick=function(){
                     let  data = {
                         product_id: response.data[i].sku,
-                        customer_id:1,
+                        customer_id:5,
                         count:1,
                         cost: response.data[i].cost
                     }
-                    //axios.post('./backend/basket.php',)
-                    //.then
+                    console.log(data);
+                    axios.post('./backend/basket.php',JSON.stringify(data))
+                    .then(function(response){
+                        console.log(response.data);
+                    })
                 }
                 
                 tr.appendChild(td_id);
@@ -86,6 +89,8 @@ export default class Getproducts extends React.Component{
                         </tbody>
             </Table>
             <Button variant="primary" onClick={this.Get_All_Product}>Получить товары</Button>{' '}
+            <Button variant="primary">Моя корзина</Button>{' '}
+            <div id="basket"></div>
             </div>
         )
     }
