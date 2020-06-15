@@ -25,7 +25,16 @@ export default class Admin_page extends React.Component{
         this.name = this.name.bind(this);
         this.cost = this.cost.bind(this);
         this.Post_All_DataProduct=this.Post_All_DataProduct.bind(this);
-    }//вот это завернуть в одну функцию
+
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.fileInput = React.createRef();
+    }
+    handleSubmit(event) {
+        event.preventDefault();
+        alert(
+          `Selected file - ${this.fileInput.current.files[0].name}`
+        );
+      }
     metal(event,name){
         this.setState({metal:event.target.value});
     }
@@ -47,13 +56,6 @@ export default class Admin_page extends React.Component{
     cost(event){
         this.setState({cost:event.target.value});
     }
-    img(event){
-
-        console.log(event);
-
-        this.setState({img:event.target.value});
- 
-    }//аш до сюда
     Get_All_Product(){
         axios.get('./backend/product.php')
         .then(function(response){
@@ -164,17 +166,15 @@ export default class Admin_page extends React.Component{
                         <Form.Control size="lg" type="text" placeholder="Цена на товар" onChange={this.cost} />
 
 
-                      <div>
-                          <input type="file" onChange={this.img}/>
-                      </div>
-
-                        
-
-                        <Form>
-                                <Form.Group>
-                                    <Form.File id="exampleFormControlFile1" label="Выберите иконку товара" onChange={this.img}/>
-                                </Form.Group>
-                        </Form>
+                        <form onSubmit={this.handleSubmit}>
+                            <label>
+                            Upload file:
+                            <input type="file" ref={this.fileInput} />
+                            </label>
+                            <br />
+                            <button type="submit">Submit</button>
+                        </form>
+ 
 
 
                         <Button variant="secondary" onClick={this.Post_All_DataProduct}>Добавить товар</Button>{' '}

@@ -67,12 +67,13 @@ export default class Getproducts extends React.Component{
         })
     }
     render(){
+        let id = "жопа";
         return(
             <div>
                 <Table striped bordered hover size="sm">
                         <thead>
                             <tr>
-                            <th>id</th>
+                            <th ></th>
                             <th>Метал</th>
                             <th>Тип</th>
                             <th>Камень</th>
