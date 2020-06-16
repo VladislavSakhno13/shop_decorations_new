@@ -40,8 +40,7 @@ export default class Getproducts extends React.Component{
                 add_to_basket.onclick=function(){
                     let  data = {
                         product_id: response.data[i].sku,
-                        customer_id:5,
-                        count:1,
+                        customer_id:4,
                         cost: response.data[i].cost
                     }
                     console.log(data);

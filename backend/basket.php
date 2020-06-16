@@ -8,9 +8,9 @@ $inputJSON = file_get_contents('php://input');
         $id_product = $conect->query("SELECT `id_product` FROM `products` WHERE `sku`= '$input[product_id]'");
         $id_for_basket= $id_product->fetch_assoc();
 
-        $conect->query("INSERT INTO basket (`product_id`,`customer_id`,`count`,`cost`) VALUES('$id_for_basket[id_product]','$input[customer_id]','$input[count]','$input[cost]')");
+        $conect->query("INSERT INTO orders (`product_id`,`customer_id`,`cost`) VALUES('$id_for_basket[id_product]','$input[customer_id]','$input[cost]')");
         
-         $sql = $conect->query("SELECT * FROM `basket` ORDER BY `id` DESC LIMIT 1");
+         $sql = $conect->query("SELECT * FROM `orders` ORDER BY `id` DESC LIMIT 1");
          $data = $sql->fetch_assoc();
          exit(json_encode($data));
 

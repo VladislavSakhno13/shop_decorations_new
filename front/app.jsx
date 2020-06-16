@@ -3,10 +3,6 @@ import React from 'react';
 import axios from 'axios';
 import Admin_page from './adminpage.jsx';
 import Navigation from './navigation.jsx';
-axios.delete('./backend/basket.php')
-.then(function(response){
-    console.log(response.data);
-})
 ReactDOM.render(<Navigation/>,document.getElementById('navigation'));
 ReactDOM.render(<Admin_page/>,document.getElementById('admin'));
 

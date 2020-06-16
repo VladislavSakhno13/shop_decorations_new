@@ -31,9 +31,8 @@ export default class Admin_page extends React.Component{
     }
     handleSubmit(event) {
         event.preventDefault();
-        alert(
-          `Selected file - ${this.fileInput.current.files[0].name}`
-        );
+        this.setState({img:this.fileInput.current.files[0].name})
+        console.log(this.fileInput.current.files[0].name);
       }
     metal(event,name){
         this.setState({metal:event.target.value});
@@ -111,7 +110,7 @@ export default class Admin_page extends React.Component{
             name:this.state.name,
             discription:this.state.discription,
             cost:this.state.cost,
-            img:"img"
+            img:this.state.img
          };
          axios.post('./backend/product.php',JSON.stringify(Products_data))
          .then(function(response){

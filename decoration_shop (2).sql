@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Май 31 2020 г., 22:54
+-- Время создания: Июн 16 2020 г., 22:49
 -- Версия сервера: 5.6.43
 -- Версия PHP: 7.3.2
 
@@ -21,6 +21,18 @@ SET time_zone = "+00:00";
 --
 -- База данных: `decoration_shop`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `basket`
+--
+
+CREATE TABLE `basket` (
+  `id` int(11) NOT NULL,
+  `orders_id` int(11) DEFAULT NULL,
+  `status` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -68,6 +80,31 @@ INSERT INTO `metal_products` (`id`, `metal`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `customer_id` int(11) DEFAULT NULL,
+  `cost` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `orders`
+--
+
+INSERT INTO `orders` (`id`, `product_id`, `customer_id`, `cost`) VALUES
+(1, 2, 5, 3200),
+(2, 5, 5, 10500),
+(3, 3, 5, 3400),
+(4, 2, 4, 3200),
+(5, 8, 4, 5800),
+(6, 8, 4, 5800);
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `order_customers`
 --
 
@@ -93,7 +130,7 @@ INSERT INTO `order_customers` (`id`, `product_id`, `count_order`, `customers_id`
 --
 
 CREATE TABLE `products` (
-  `id` int(11) NOT NULL,
+  `id_product` int(11) NOT NULL,
   `metal_product` int(11) DEFAULT NULL,
   `type_product` int(11) DEFAULT NULL,
   `rock_product` int(11) DEFAULT NULL,
@@ -108,9 +145,13 @@ CREATE TABLE `products` (
 -- Дамп данных таблицы `products`
 --
 
-INSERT INTO `products` (`id`, `metal_product`, `type_product`, `rock_product`, `img`, `name`, `cost`, `sku`, `discription`) VALUES
+INSERT INTO `products` (`id_product`, `metal_product`, `type_product`, `rock_product`, `img`, `name`, `cost`, `sku`, `discription`) VALUES
 (1, 2, 2, 4, 'Картинка', 'Кольцо', 1200, 'a345bd', 'описание'),
-(2, 2, 2, 4, 'IMG', 'серебряное кольцо с алмазом', 3200, 'a345bc12', 'кольцо из серебра, вставка выполнена из алмаза');
+(2, 2, 2, 4, 'IMG', 'серебряное кольцо с алмазом', 3200, 'a345bc12', 'кольцо из серебра, вставка выполнена из алмаза'),
+(3, 4, 2, 1, 'img', 'апвап', 3200, '', 'ывк'),
+(4, 1, 3, 1, 'img', 'ff', 3400, '', 'ff'),
+(5, 3, 2, 1, 'img', 'серьги', 10500, 'f456hg', 'серьги из платины'),
+(8, 2, 3, 1, 'front/img/IMG_9864-w.jpg', 'цепочка', 5800, 'frrt679f', 'цепочка с рубином');
 
 -- --------------------------------------------------------
 
@@ -159,6 +200,13 @@ INSERT INTO `type_products` (`id`, `type`) VALUES
 --
 
 --
+-- Индексы таблицы `basket`
+--
+ALTER TABLE `basket`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `orders_id` (`orders_id`);
+
+--
 -- Индексы таблицы `customers`
 --
 ALTER TABLE `customers`
@@ -169,6 +217,14 @@ ALTER TABLE `customers`
 --
 ALTER TABLE `metal_products`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `customer_id` (`customer_id`);
 
 --
 -- Индексы таблицы `order_customers`
@@ -182,7 +238,7 @@ ALTER TABLE `order_customers`
 -- Индексы таблицы `products`
 --
 ALTER TABLE `products`
-  ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`id_product`),
   ADD KEY `metal_product` (`metal_product`),
   ADD KEY `type_product` (`type_product`),
   ADD KEY `rock_product` (`rock_product`);
@@ -204,16 +260,28 @@ ALTER TABLE `type_products`
 --
 
 --
+-- AUTO_INCREMENT для таблицы `basket`
+--
+ALTER TABLE `basket`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT для таблицы `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT для таблицы `metal_products`
 --
 ALTER TABLE `metal_products`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT для таблицы `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT для таблицы `order_customers`
@@ -225,7 +293,7 @@ ALTER TABLE `order_customers`
 -- AUTO_INCREMENT для таблицы `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_product` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT для таблицы `rocks_products`
@@ -244,11 +312,24 @@ ALTER TABLE `type_products`
 --
 
 --
+-- Ограничения внешнего ключа таблицы `basket`
+--
+ALTER TABLE `basket`
+  ADD CONSTRAINT `basket_ibfk_1` FOREIGN KEY (`orders_id`) REFERENCES `orders` (`id`);
+
+--
+-- Ограничения внешнего ключа таблицы `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id_product`),
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`);
+
+--
 -- Ограничения внешнего ключа таблицы `order_customers`
 --
 ALTER TABLE `order_customers`
   ADD CONSTRAINT `order_customers_ibfk_1` FOREIGN KEY (`customers_id`) REFERENCES `customers` (`id`),
-  ADD CONSTRAINT `order_customers_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
+  ADD CONSTRAINT `order_customers_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id_product`);
 
 --
 -- Ограничения внешнего ключа таблицы `products`
