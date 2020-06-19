@@ -2,6 +2,8 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Form,Button,Table} from 'react-bootstrap';
 import axios from 'axios';
+import Basket_show from './basket_show.jsx';
+import ReactDOM from 'react-dom';
 export default class Getproducts extends React.Component{
     Get_All_Product(){
         axios.get('./backend/product.php')
@@ -40,7 +42,7 @@ export default class Getproducts extends React.Component{
                 add_to_basket.onclick=function(){
                     let  data = {
                         product_id: response.data[i].sku,
-                        customer_id:5,
+                        customer_id:4,
                         cost: response.data[i].cost
                     }
                     console.log(data);
@@ -59,6 +61,7 @@ export default class Getproducts extends React.Component{
                 
                 tr.appendChild(td_id);
                 tr.appendChild(td_metal);
+
                 tr.appendChild(td_type);
                 tr.appendChild(td_rock);
                 tr.appendChild(td_img);
@@ -72,13 +75,16 @@ export default class Getproducts extends React.Component{
             
         })
     }
+    open_basket(){
+        ReactDOM.render(<Basket_show/>,document.getElementById('basket'));
+    }
     render(){
         return(
             <div>
                 <Table striped bordered hover size="sm">
                         <thead>
                             <tr>
-                            <th ></th>
+                            <th >id</th>
                             <th>Метал</th>
                             <th>Тип</th>
                             <th>Камень</th>
@@ -95,7 +101,7 @@ export default class Getproducts extends React.Component{
                         </tbody>
             </Table>
             <Button variant="primary" onClick={this.Get_All_Product}>Получить товары</Button>{' '}
-            <Button variant="primary">Моя корзина</Button>{' '}
+            <Button variant="primary" onClick={this.open_basket}>Моя корзина</Button>{' '}
             <div id="basket"></div>
             </div>
         )

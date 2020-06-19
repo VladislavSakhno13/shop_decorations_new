@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteRule ^backend/basket/?$ backend/basket.php
+RewriteRule ^backend/basket/([0-9]+)?$ backend/basket.php?id=$1
