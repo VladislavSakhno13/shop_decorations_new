@@ -1,0 +1,8 @@
+*{
+    margin: auto 0;
+    box-sizing: border-box;
+}
+#admin_nav{
+    max-width: 1200px;
+    margin: auto;
+}

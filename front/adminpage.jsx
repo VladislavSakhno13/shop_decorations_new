@@ -173,12 +173,7 @@ export default class Admin_page extends React.Component{
                             <br />
                             <button type="submit">Submit</button>
                         </form>
- 
-
-
                         <Button variant="secondary" onClick={this.Post_All_DataProduct}>Добавить товар</Button>{' '}
-                   
-
                     </Form.Group>
             </Form>
 
