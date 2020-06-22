@@ -3,8 +3,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Form,Button,Table} from 'react-bootstrap';
 import axios from 'axios';
 export default class Basket_show extends React.Component{
-    render(){
+    buy_product(){
         let id = 5;
+        axios.put(`./backend/basket${id}`)
+        .then(function(response){
+            console.log(response.data);
+        })
+    }
+    render(){
+        let id = 4;
         let cost_all_product = 0;
         axios.get(`./backend/basket/${id}`)
         .then(function(response){
@@ -55,7 +62,9 @@ export default class Basket_show extends React.Component{
                         </tbody>
             </Table>
         <div id="cost_all_product"></div>
+        <Button variant="primary" onClick={this.buy_product}>Оплатить</Button>{' '}
             </div>
+            
         )
     }
 }
