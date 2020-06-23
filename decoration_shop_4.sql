@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Июн 16 2020 г., 22:49
+-- Время создания: Июн 23 2020 г., 09:00
 -- Версия сервера: 5.6.43
 -- Версия PHP: 7.3.2
 
@@ -33,6 +33,23 @@ CREATE TABLE `basket` (
   `orders_id` int(11) DEFAULT NULL,
   `status` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `basket`
+--
+
+INSERT INTO `basket` (`id`, `orders_id`, `status`) VALUES
+(19, 18, 'Ожидает оплаты'),
+(20, 19, 'Ожидает оплаты'),
+(21, 20, 'Ожидает оплаты'),
+(22, 21, 'Ожидает оплаты'),
+(23, 22, 'Ожидает оплаты'),
+(24, 23, 'Олачено'),
+(25, 24, 'Олачено'),
+(26, 25, 'Олачено'),
+(27, 26, 'Олачено'),
+(28, 27, 'Ожидает оплаты'),
+(29, 28, 'Ожидает оплаты');
 
 -- --------------------------------------------------------
 
@@ -86,21 +103,25 @@ INSERT INTO `metal_products` (`id`, `metal`) VALUES
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
   `product_id` int(11) DEFAULT NULL,
-  `customer_id` int(11) DEFAULT NULL,
-  `cost` int(11) DEFAULT NULL
+  `customer_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `orders`
 --
 
-INSERT INTO `orders` (`id`, `product_id`, `customer_id`, `cost`) VALUES
-(1, 2, 5, 3200),
-(2, 5, 5, 10500),
-(3, 3, 5, 3400),
-(4, 2, 4, 3200),
-(5, 8, 4, 5800),
-(6, 8, 4, 5800);
+INSERT INTO `orders` (`id`, `product_id`, `customer_id`) VALUES
+(18, 2, 5),
+(19, 5, 5),
+(20, 5, 5),
+(21, 2, 5),
+(22, 1, 5),
+(23, 2, 4),
+(24, 8, 4),
+(25, 5, 4),
+(26, 1, 4),
+(27, 1, 4),
+(28, 2, 4);
 
 -- --------------------------------------------------------
 
@@ -263,7 +284,7 @@ ALTER TABLE `type_products`
 -- AUTO_INCREMENT для таблицы `basket`
 --
 ALTER TABLE `basket`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT для таблицы `customers`
@@ -281,7 +302,7 @@ ALTER TABLE `metal_products`
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT для таблицы `order_customers`
