@@ -5,13 +5,13 @@ import axios from 'axios';
 export default class Basket_show extends React.Component{
     buy_product(){
         let id = 5;
-        axios.put(`./backend/basket${id}`)
+        axios.put(`./backend/basket/${id}`)
         .then(function(response){
             console.log(response.data);
         })
     }
     render(){
-        let id = 4;
+        let id = 5;
         let cost_all_product = 0;
         axios.get(`./backend/basket/${id}`)
         .then(function(response){
@@ -29,16 +29,12 @@ export default class Basket_show extends React.Component{
                 let td_name = document.createElement('td');
                 td_name.innerHTML = response.data[i].name;
 
-                let td_count = document.createElement('td');
-                td_count.innerHTML = 13;
-
                 let td_status = document.createElement('td');
                 td_status.innerHTML = response.data[i].status;           
 
                 tr.appendChild(td_id);
                 tr.appendChild(td_cost);
                 tr.appendChild(td_name);
-                tr.appendChild(td_count);
                 tr.appendChild(td_status);
                 document.getElementById('table_for_basket').appendChild(tr);
             }
@@ -53,7 +49,6 @@ export default class Basket_show extends React.Component{
                             <th >#</th>
                             <th>Цена</th>
                             <th>Название</th>
-                            <th>Колличество</th>
                             <th>Статус</th>
                             </tr>
                         </thead>
