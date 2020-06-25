@@ -17,8 +17,8 @@ export default class Start_page extends React.Component{
                         </Nav>
                         <Form inline>
                         <ButtonGroup aria-label="Basic example">
-                            <Button variant="secondary">Middle</Button>
-                            <Button variant="secondary">Right</Button>
+                            <Button variant="secondary">Авторизация</Button>
+                            <Button variant="secondary">Регистрация</Button>
                         </ButtonGroup>
                         </Form>
                 </Navbar>
