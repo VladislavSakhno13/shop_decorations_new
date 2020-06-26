@@ -1,10 +1,15 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Form,Button,Table,Nav,Navbar,NavDropdown,FormControl,ButtonGroup} from 'react-bootstrap';
 import axios from 'axios';
+import Sign_up from './sign_up.jsx';
 
 
 export default class Start_page extends React.Component{
+    openSign_up(){
+        ReactDOM.render(<Sign_up/>,document.getElementById('sign_up'))
+    }
     render(){
         return(
             <div>
@@ -18,7 +23,7 @@ export default class Start_page extends React.Component{
                         <Form inline>
                         <ButtonGroup aria-label="Basic example">
                             <Button variant="secondary">Авторизация</Button>
-                            <Button variant="secondary">Регистрация</Button>
+                            <Button variant="secondary" onClick={this.openSign_up}>Регистрация</Button>
                         </ButtonGroup>
                         </Form>
                 </Navbar>
