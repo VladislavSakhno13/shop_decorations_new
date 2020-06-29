@@ -19,11 +19,12 @@
      }
      else if($_SERVER['REQUEST_METHOD'] == 'POST'){
         
-        if(!isset($data)){
+        
         $date_sign_up = date('l jS \of F Y h:i:s A');
         $sql = $conect->query("SELECT * FROM customers WHERE login = $input[login]");
         $data = $sql->fetch_assoc();
-            $conect->query("INSERT INTO customers (`FIO`,`date`,`login`,`password`) VALUES('$input[name]','$date_sign_up','$input[login]','$input[password]')");
+        if(!isset($data)){
+            $conect->query("INSERT INTO customers (`FIO`,`date`,`login`,`password`,`status_user_id`) VALUES('$input[name]','$date_sign_up','$input[login]','$input[password]',1)");
             
             $sql = $conect->query("SELECT * FROM customers ORDER BY id DESC LIMIT 1");
             $data = $sql->fetch_assoc();

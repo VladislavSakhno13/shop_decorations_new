@@ -19,15 +19,12 @@ export default class Sign_up extends React.Component{
         }
     getlogin(event){
         this.setState({login:event.target.value});
-       console.log(event.target.value);
     }
     getpassword(event){
         this.setState({password:event.target.value});
-        console.log(event.target.value);
     }
     getName(event){
         this.setState({name:event.target.value});
-        console.log(event.target.value);
     }
     sent_user(){
         let data = {
@@ -35,10 +32,13 @@ export default class Sign_up extends React.Component{
             password:this.state.password,
             name:this.state.name
         }
-        
+        console.log(data);
         axios.post(`./backend/customers.php`,JSON.stringify(data))
         .then(function(response){
-            console.log(response.data);
+            if(response.data.status_user_id == 3){
+                ReactDOM.unmountComponentAtNode(document.getElementById('page_site'));
+            }
+            
         })
         ReactDOM.unmountComponentAtNode(document.getElementById('sign_up'));
     }
