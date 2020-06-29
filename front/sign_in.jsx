@@ -3,6 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Form,Button,Table,Nav,Navbar,NavDropdown,FormControl,ButtonGroup} from 'react-bootstrap';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
+import Navigation from './navigation.jsx';
+import Start_page from './start_page.jsx';
 export default class Sign_in extends React.Component{
     constructor(props){
         super(props);
@@ -31,6 +33,11 @@ export default class Sign_in extends React.Component{
         console.log(data);
         axios.put('./backend/customers.php',JSON.stringify(data))
         .then(function(response){
+            if(response.data.status_user_id == 3){
+                ReactDOM.unmountComponentAtNode(document.getElementById('page_site'));
+                ReactDOM.render(<Navigation/>,document.getElementById('navigation'));
+                ReactDOM.render(<Admin_page/>,document.getElementById('admin'));
+            }
             console.log(response.data);
         })
         ReactDOM.unmountComponentAtNode(document.getElementById('sign_up'));

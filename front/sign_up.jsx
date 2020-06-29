@@ -35,9 +35,7 @@ export default class Sign_up extends React.Component{
         console.log(data);
         axios.post(`./backend/customers.php`,JSON.stringify(data))
         .then(function(response){
-            if(response.data.status_user_id == 3){
-                ReactDOM.unmountComponentAtNode(document.getElementById('page_site'));
-            }
+            console.log(response.data);
             
         })
         ReactDOM.unmountComponentAtNode(document.getElementById('sign_up'));

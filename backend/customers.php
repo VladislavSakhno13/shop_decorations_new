@@ -37,7 +37,7 @@
     
 }
      else if($_SERVER['REQUEST_METHOD'] == 'PUT'){
-        $sql = $conect->query("SELECT * FROM customers WHERE login = $input[login] AND password = $input[password]");
+        $sql = $conect->query("SELECT * FROM customers WHERE login = '$input[login]' AND password = '$input[password]'");
         $data = $sql->fetch_assoc();
         exit(json_encode($data));
 
