@@ -30,9 +30,10 @@ export default class Admin_page extends React.Component{
         this.fileInput = React.createRef();
     }
     handleSubmit(event) {
+        let formData = new FormData();
         event.preventDefault();
         this.setState({img:this.fileInput.current.files[0].name})
-        console.log(this.fileInput.current.files[0].name);
+        console.log(this.fileInput);
       }
     metal(event,name){
         this.setState({metal:event.target.value});

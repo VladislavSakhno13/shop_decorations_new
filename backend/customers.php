@@ -1,8 +1,10 @@
 <?php
+    session_start();
     $inputJSON = file_get_contents('php://input');
      $input = json_decode($inputJSON, TRUE);
      require_once 'connection.php';
      $conect = new mysqli($host,$user,$password,$database);
+     
      if($_SERVER['REQUEST_METHOD'] == 'GET'){
         if(isset($_GET['id'])){
             $id = $conect->real_escape_string($_GET['id']);
@@ -23,7 +25,7 @@
         $date_sign_up = date('l jS \of F Y h:i:s A');
         $sql = $conect->query("SELECT * FROM customers WHERE login = $input[login]");
         $data = $sql->fetch_assoc();
-        if(!isset($data)){
+        if(isset($data)){
             $conect->query("INSERT INTO customers (`FIO`,`date`,`login`,`password`,`status_user_id`) VALUES('$input[name]','$date_sign_up','$input[login]','$input[password]',1)");
             
             $sql = $conect->query("SELECT * FROM customers ORDER BY id DESC LIMIT 1");
@@ -37,8 +39,10 @@
     
 }
      else if($_SERVER['REQUEST_METHOD'] == 'PUT'){
+        
         $sql = $conect->query("SELECT * FROM customers WHERE login = '$input[login]' AND password = '$input[password]'");
         $data = $sql->fetch_assoc();
+        $_SESSION['username'] = $data['FIO'];
         exit(json_encode($data));
 
      }

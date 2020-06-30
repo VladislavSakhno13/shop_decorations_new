@@ -5,6 +5,7 @@ import axios from 'axios';
 import ReactDOM from 'react-dom';
 import Navigation from './navigation.jsx';
 import Start_page from './start_page.jsx';
+import Admin_page from './adminpage.jsx';
 export default class Sign_in extends React.Component{
     constructor(props){
         super(props);
@@ -19,18 +20,15 @@ export default class Sign_in extends React.Component{
         }
     getlogin(event){
         this.setState({login:event.target.value});
-       console.log(event.target.value);
     }
     getpassword(event){
         this.setState({password:event.target.value});
-        console.log(event.target.value);
     }
     sign_in_user(){
         let data = {
             login:this.state.login,
             password:this.state.password
         }
-        console.log(data);
         axios.put('./backend/customers.php',JSON.stringify(data))
         .then(function(response){
             if(response.data.status_user_id == 3){
