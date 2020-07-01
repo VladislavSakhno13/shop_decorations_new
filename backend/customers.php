@@ -43,6 +43,8 @@
         $sql = $conect->query("SELECT * FROM customers WHERE login = '$input[login]' AND password = '$input[password]'");
         $data = $sql->fetch_assoc();
         $_SESSION['username'] = $data['FIO'];
+        $_SESSION['status'] = $data['status_user_id'];
+        $_SESSION['id'] = $data['id'];
         exit(json_encode($data));
 
      }
