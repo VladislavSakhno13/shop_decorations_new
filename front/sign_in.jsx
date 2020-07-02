@@ -36,9 +36,12 @@ export default class Sign_in extends React.Component{
                 ReactDOM.render(<Navigation/>,document.getElementById('navigation'));
                 ReactDOM.render(<Admin_page/>,document.getElementById('admin'));
             }
-            console.log(response.data);
-        })
-        ReactDOM.unmountComponentAtNode(document.getElementById('sign_up'));
+            console.log("этот пользователь авторизован",response.data);
+            ReactDOM.unmountComponentAtNode(document.getElementById('sign_up'));
+            document.getElementById('sign-up').style.display = 'none'
+            document.getElementById('sign-in').style.display = 'none'
+            document.getElementById('out').style.display = 'block'
+        })  
     }
     render(){
         return(

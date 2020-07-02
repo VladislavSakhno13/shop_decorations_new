@@ -1,5 +1,5 @@
 <?php
-    session_start();
+   
     $inputJSON = file_get_contents('php://input');
      $input = json_decode($inputJSON, TRUE);
      require_once 'connection.php';
@@ -42,6 +42,7 @@
         
         $sql = $conect->query("SELECT * FROM customers WHERE login = '$input[login]' AND password = '$input[password]'");
         $data = $sql->fetch_assoc();
+        session_start();
         $_SESSION['username'] = $data['FIO'];
         $_SESSION['status'] = $data['status_user_id'];
         $_SESSION['id'] = $data['id'];
