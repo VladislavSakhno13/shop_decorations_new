@@ -5,8 +5,19 @@ import {Form,Button,Table,Nav,Navbar,NavDropdown,FormControl,ButtonGroup} from '
 import axios from 'axios';
 import Sign_up from './sign_up.jsx';
 import Sign_in from './sign_in.jsx';
+import Admin_page from './adminpage.jsx';
+import Navigation from './navigation.jsx';
 
 export default class Start_page extends React.Component{
+    comeback(){
+        ReactDOM.unmountComponentAtNode(document.getElementById('navigation'));
+        ReactDOM.unmountComponentAtNode(document.getElementById('admin'));
+        alert(1);
+    }
+    openAdminpage(){
+                ReactDOM.render(<Navigation/>,document.getElementById('navigation'));
+                ReactDOM.render(<Admin_page/>,document.getElementById('admin'));
+    }
     openSign_up(){
         ReactDOM.render(<Sign_up/>,document.getElementById('sign_up'))
     }
@@ -19,10 +30,10 @@ export default class Start_page extends React.Component{
                 <Navbar bg="dark" variant="dark">
                         <Navbar.Brand href="#home">Navbar</Navbar.Brand>
                         <Nav className="mr-auto">
-                        <Nav.Link href="#home">Home</Nav.Link>
+                        <Nav.Link onClick={this.comeback}>Главная страница</Nav.Link>
                         <Nav.Link href="#features">Features</Nav.Link>
                         <Nav.Link href="#pricing">Pricing</Nav.Link>
-                        <Nav.Link id="open_admin_page">Admin page</Nav.Link>
+                        <Nav.Link id="open_admin_page" onClick={this.openAdminpage}>Admin page</Nav.Link>
                         </Nav>
                         <Form inline>
                         <ButtonGroup aria-label="Basic example">
