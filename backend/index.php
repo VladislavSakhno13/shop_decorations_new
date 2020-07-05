@@ -7,11 +7,11 @@
             session_start();
             $data_with_user = array('username'=>$_SESSION['username'],
             'status'=>$_SESSION['status'],'id'=>$_SESSION['id']);
-            exit(json_encode($_SESSION['username']));
+            exit(json_encode($data_with_user));
             
     }
-        else{  
-            echo "сессии не существует";
+        else{
+            exit(json_encode(false));
         }
 }
     

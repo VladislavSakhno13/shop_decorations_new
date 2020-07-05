@@ -22,6 +22,7 @@ export default class Start_page extends React.Component{
                         <Nav.Link href="#home">Home</Nav.Link>
                         <Nav.Link href="#features">Features</Nav.Link>
                         <Nav.Link href="#pricing">Pricing</Nav.Link>
+                        <Nav.Link id="open_admin_page">Admin page</Nav.Link>
                         </Nav>
                         <Form inline>
                         <ButtonGroup aria-label="Basic example">
