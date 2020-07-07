@@ -12,7 +12,6 @@ export default class Start_page extends React.Component{
     comeback(){
         ReactDOM.unmountComponentAtNode(document.getElementById('navigation'));
         ReactDOM.unmountComponentAtNode(document.getElementById('admin'));
-        alert(1);
     }
     openAdminpage(){
                 ReactDOM.render(<Navigation/>,document.getElementById('navigation'));
