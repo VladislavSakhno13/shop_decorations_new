@@ -2,6 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Form,Button,Table} from 'react-bootstrap';
 import axios from 'axios';
+import {adminService, getStaus} from './adminService.js';
 export default class Basket_show extends React.Component{
     buy_product(){
         let id = 5;
@@ -11,9 +12,9 @@ export default class Basket_show extends React.Component{
         })
     }
     render(){
-        let id = 5;
-        let cost_all_product = 0;
-        axios.get(`./backend/basket/${id}`)
+        getStaus().then(function(response){
+            let id = response.id;
+            axios.get(`./backend/basket/${id}`)
         .then(function(response){
             for(let i=0;i<response.data.length;i++){
                 let tr = document.createElement('tr');
@@ -24,7 +25,6 @@ export default class Basket_show extends React.Component{
                 let td_cost = document.createElement('td');
                 td_cost.innerHTML = Number(response.data[i].cost);
                 cost_all_product=cost_all_product + Number(response.data[i].cost);
-                //console.log(typeof(response.data[i].cost));
 
                 let td_name = document.createElement('td');
                 td_name.innerHTML = response.data[i].name;
@@ -39,7 +39,7 @@ export default class Basket_show extends React.Component{
                 document.getElementById('table_for_basket').appendChild(tr);
             }
             document.getElementById('cost_all_product').innerHTML = "Общая стоимость равна - " + cost_all_product + " Рублей ";
-            //console.log(typeof(cost_all_product));
+        })
         })
         return(
             <div>

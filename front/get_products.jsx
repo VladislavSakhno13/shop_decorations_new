@@ -75,9 +75,6 @@ export default class Getproducts extends React.Component{
             
         })
     }
-    open_basket(){
-        ReactDOM.render(<Basket_show/>,document.getElementById('basket'));
-    }
     render(){
         return(
             <div>
@@ -101,7 +98,6 @@ export default class Getproducts extends React.Component{
                         </tbody>
             </Table>
             <Button variant="primary" onClick={this.Get_All_Product}>Получить товары</Button>{' '}
-            <Button variant="primary" onClick={this.open_basket}>Моя корзина</Button>{' '}
             <div id="basket"></div>
             </div>
         )

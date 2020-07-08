@@ -31,16 +31,12 @@ export default class Sign_in extends React.Component{
         }
         axios.put('./backend/customers.php',JSON.stringify(data))
         .then(function(response){
-            /*if(response.data.status_user_id == 3){
-                ReactDOM.unmountComponentAtNode(document.getElementById('page_site'));
-                ReactDOM.render(<Navigation/>,document.getElementById('navigation'));
-                ReactDOM.render(<Admin_page/>,document.getElementById('admin'));
-            }*/
             console.log("этот пользователь авторизован",response.data);
             ReactDOM.unmountComponentAtNode(document.getElementById('sign_up'));
             document.getElementById('sign-up').style.display = 'none'
             document.getElementById('sign-in').style.display = 'none'
             document.getElementById('out').style.display = 'block'
+            document.getElementById('menu-for-user').style.display = 'block'
         })  
     }
     render(){
