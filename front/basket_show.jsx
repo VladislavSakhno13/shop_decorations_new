@@ -13,9 +13,11 @@ export default class Basket_show extends React.Component{
     }
     render(){
         getStaus().then(function(response){
+           
             let id = response.id;
             axios.get(`./backend/basket/${id}`)
         .then(function(response){
+            let cost_all_product = 0;
             for(let i=0;i<response.data.length;i++){
                 let tr = document.createElement('tr');
 

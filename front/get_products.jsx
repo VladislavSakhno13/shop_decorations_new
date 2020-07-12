@@ -36,28 +36,6 @@ export default class Getproducts extends React.Component{
                 
                 let td_discription = document.createElement('td');
                 td_discription.innerHTML = response.data[i].discription;
-
-                let add_to_basket = document.createElement('td');
-                add_to_basket.innerHTML = "Добавить в корзину";
-                add_to_basket.onclick=function(){
-                    let  data = {
-                        product_id: response.data[i].sku,
-                        customer_id:5,
-                        cost: response.data[i].cost
-                    }
-                    console.log(data);
-                    axios.post('./backend/orders.php',JSON.stringify(data))
-                    .then(function(response){
-                        console.log(response.data);
-                        let data_for_basket = {
-                            order_id: response.data.id
-                        }
-                        axios.post('./backend/basket.php',JSON.stringify(data_for_basket))
-                        .then(function(response){
-                            console.log(response.data);
-                        })
-                    })
-                }
                 
                 tr.appendChild(td_id);
                 tr.appendChild(td_metal);
@@ -90,7 +68,6 @@ export default class Getproducts extends React.Component{
                             <th>Цена</th>
                             <th>sku</th>
                             <th> Описание</th>
-                            <th>Добавить в корзину</th>
                             </tr>
                         </thead>
                         <tbody id="table_product">

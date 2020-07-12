@@ -30,10 +30,10 @@ export default class Admin_page extends React.Component{
         this.fileInput = React.createRef();
     }
     handleSubmit(event) {
-        let formData = new FormData();
         event.preventDefault();
-        this.setState({img:this.fileInput.current.files[0].name})
-        console.log(this.fileInput);
+        this.setState({img:this.fileInput.current.files[0]})
+        console.log(this.fileInput.current.files[0]);
+
       }
     metal(event,name){
         this.setState({metal:event.target.value});
@@ -56,53 +56,9 @@ export default class Admin_page extends React.Component{
     cost(event){
         this.setState({cost:event.target.value});
     }
-    Get_All_Product(){
-        axios.get('./backend/product.php')
-        .then(function(response){
-            for(let i=0;i<response.data.length;i++){
-                let tr = document.createElement('tr');
-
-                let td_id = document.createElement('td');
-                td_id.innerHTML = i+1;
-    
-                let td_metal = document.createElement('td');
-                td_metal.innerHTML = response.data[i].metal;
-
-                let td_type = document.createElement('td');
-                td_type.innerHTML = response.data[i].type;
-
-                let td_rock = document.createElement('td');
-                td_rock.innerHTML = response.data[i].rock;
-
-                let td_img = document.createElement('td');
-                td_img.innerHTML = response.data[i].img;
-
-                let td_name = document.createElement('td');
-                td_name.innerHTML = response.data[i].name;
-
-                let td_cost = document.createElement('td');
-                td_cost.innerHTML = response.data[i].cost;
-                let td_sku = document.createElement('td');
-                td_sku.innerHTML = response.data[i].sku;
-                
-                let td_discription = document.createElement('td');
-                td_discription.innerHTML = response.data[i].discription;
-                
-                tr.appendChild(td_id);
-                tr.appendChild(td_metal);
-                tr.appendChild(td_type);
-                tr.appendChild(td_rock);
-                tr.appendChild(td_img);
-                tr.appendChild(td_name);
-                tr.appendChild(td_cost);
-                tr.appendChild(td_sku);
-                tr.appendChild(td_discription);
-                document.getElementById('table_product').appendChild(tr);
-            }
-            
-        })
-    }
     Post_All_DataProduct(){
+        let formData = new FormData();
+        formData.append('image',this.state.img);
        let Products_data = {
             metal:this.state.metal,
             type:this.state.type,
@@ -111,7 +67,7 @@ export default class Admin_page extends React.Component{
             name:this.state.name,
             discription:this.state.discription,
             cost:this.state.cost,
-            img:this.state.img
+            img:formData
          };
          axios.post('./backend/product.php',JSON.stringify(Products_data))
          .then(function(response){
@@ -166,7 +122,7 @@ export default class Admin_page extends React.Component{
                         <Form.Control size="lg" type="text" placeholder="Цена на товар" onChange={this.cost} />
 
 
-                        <form onSubmit={this.handleSubmit}>
+                        <form onSubmit={this.handleSubmit} encType='multipart/form-data'>
                             <label>
                             Upload file:
                             <input type="file" ref={this.fileInput} />
@@ -174,6 +130,7 @@ export default class Admin_page extends React.Component{
                             <br />
                             <button type="submit">Submit</button>
                         </form>
+
                         <Button variant="secondary" onClick={this.Post_All_DataProduct}>Добавить товар</Button>{' '}
                     </Form.Group>
             </Form>

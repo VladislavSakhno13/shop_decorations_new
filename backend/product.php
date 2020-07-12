@@ -20,7 +20,7 @@
         $id_type= $sqltype->fetch_assoc();
         $id_rock= $sqlrock->fetch_assoc();
         
-        $road_img = 'front/img/'.$input['img'];
+        $road_img = $input['img'];
 
         $conect->query("INSERT INTO products (metal_product,type_product,rock_product,img,name,cost,sku,discription) VALUES($id_metal[id],$id_type[id],$id_rock[id],'$road_img','$input[name]','$input[cost]','$input[sku]','$input[discription]')");
 
