@@ -37,6 +37,7 @@ export default class Sign_in extends React.Component{
             document.getElementById('sign-in').style.display = 'none'
             document.getElementById('out').style.display = 'block'
             document.getElementById('menu-for-user').style.display = 'block'
+            
         })  
     }
     render(){
