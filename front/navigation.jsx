@@ -23,7 +23,7 @@ export default class Navigation extends React.Component{
                             <Nav.Link onClick={this.open_product}>Получить список товаров</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link>Link</Nav.Link>
+                            <Nav.Link>Статус оплаты</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
                         </Nav.Item>

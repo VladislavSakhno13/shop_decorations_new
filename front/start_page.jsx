@@ -5,18 +5,22 @@ import {Form,Button,Table,Nav,Navbar,NavDropdown,FormControl,ButtonGroup} from '
 import axios from 'axios';
 import Sign_up from './sign_up.jsx';
 import Sign_in from './sign_in.jsx';
+import Buy_status from './buy_status.jsx';
 import Admin_page from './adminpage.jsx';
 import Navigation from './navigation.jsx';
 import {adminService, getStaus, isAdmin} from './adminService.js';
 import Basket_show from './basket_show.jsx';
 
 export default class Start_page extends React.Component{
+    get_prducts(){
+        ReactDOM.render(<Buy_status/>,document.getElementById('main_page'));
+    }
     open_basket(){
         ReactDOM.render(<Basket_show/>,document.getElementById('main_page'));
     }
     comeback(){
         ReactDOM.unmountComponentAtNode(document.getElementById('navigation'));
-        ReactDOM.unmountComponentAtNode(document.getElementById('admin'));
+        ReactDOM.unmountComponentAtNode(document.getElementById('main_page'));
     }
     openAdminpage(){
         getStaus().then(function(response){
@@ -43,7 +47,7 @@ export default class Start_page extends React.Component{
                         <Navbar.Brand href="#home">Navbar</Navbar.Brand>
                         <Nav className="mr-auto">
                         <Nav.Link onClick={this.comeback}>Главная страница</Nav.Link>
-                        <Nav.Link href="#features">Features</Nav.Link>
+                        <Nav.Link onClick={this.get_prducts}>Список товаров</Nav.Link>
 
                        
 
@@ -53,6 +57,7 @@ export default class Start_page extends React.Component{
                         <ButtonGroup aria-label="Basic example">
                             <Button variant="secondary" id="sign-in" onClick={this.openSign_in}>Авторизация</Button>
                             <Button variant="secondary" id="sign-up" onClick={this.openSign_up}>Регистрация</Button>
+                            
 
                             <NavDropdown title="Пользователь" id="basic-nav-dropdown" id="menu-for-user">
                                 <NavDropdown.Item onClick={this.open_basket}>Моя корзина</NavDropdown.Item>

@@ -47,7 +47,6 @@ export default class Getproducts extends React.Component{
                 tr.appendChild(td_cost);
                 tr.appendChild(td_sku);
                 tr.appendChild(td_discription);
-                tr.appendChild(add_to_basket);
                 document.getElementById('table_product').appendChild(tr);
             }
             
