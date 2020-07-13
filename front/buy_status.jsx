@@ -35,23 +35,36 @@ export default class Admin_page extends React.Component{
 
                     let td_sku = document.createElement('td');
                     td_sku.innerHTML = response.data[i].sku;
-                    let product_id = response.data[i].sku;
+                   
                     
                     let td_discription = document.createElement('td');
                     td_discription.innerHTML = response.data[i].discription;
                     let add_to_basket = document.createElement('td');
                     add_to_basket.innerHTML = "Добавить в корзину";
                     add_to_basket.onclick=function(){
-                        getStaus().then(function(response,product_id,cost){
+                        let product_id = response.data[i].sku;
+                        let cost = response.data[i].cost;
+                        getStaus().then(function(response){
                             let  data = {
                                 product_id: product_id,
                                 customer_id: response.id,
                                 cost: cost
                             }
+                            axios.post('./backend/orders.php',JSON.stringify(data))
+                                .then(function(response){
+                                console.log(response.data);
+                                let data_for_basket = {
+                                    order_id: response.data.id
+                            }
+                                axios.post('./backend/basket.php',JSON.stringify(data_for_basket))
+                                .then(function(response){
+                                    console.log(response.data);
+                                })
+                        })
                             console.log(data);
                         })
                         
-                        //console.log(data);
+                      
                         /*axios.post('./backend/orders.php',JSON.stringify(data))
                         .then(function(response){
                             console.log(response.data);
