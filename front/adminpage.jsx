@@ -26,15 +26,19 @@ export default class Admin_page extends React.Component{
         this.cost = this.cost.bind(this);
         this.Post_All_DataProduct=this.Post_All_DataProduct.bind(this);
 
-        this.handleSubmit = this.handleSubmit.bind(this);
+        //this.handleSubmit = this.handleSubmit.bind(this);
+        this.onFileChange = this.onFileChange.bind(this);
         this.fileInput = React.createRef();
     }
-    handleSubmit(event) {
+    onFileChange(event){
+        this.setState({img:event.target.files[0]});
+    }
+    /*handleSubmit(event) {
         event.preventDefault();
         this.setState({img:this.fileInput.current.files[0]})
         console.log(this.fileInput.current.files[0]);
 
-      }
+      }*/
     metal(event,name){
         this.setState({metal:event.target.value});
     }
@@ -58,18 +62,15 @@ export default class Admin_page extends React.Component{
     }
     Post_All_DataProduct(){
         let formData = new FormData();
-        formData.append('image',this.state.img);
-       let Products_data = {
-            metal:this.state.metal,
-            type:this.state.type,
-            rock:this.state.rock,
-            sku:this.state.sku,
-            name:this.state.name,
-            discription:this.state.discription,
-            cost:this.state.cost,
-            img:formData
-         };
-         axios.post('./backend/product.php',JSON.stringify(Products_data))
+        formData.append('img',this.state.img);
+        formData.append('metal',this.state.metal);
+        formData.append('type',this.state.type);
+        formData.append('rock',this.state.rock);
+        formData.append('sku',this.state.sku);
+        formData.append('name',this.state.name);
+        formData.append('discription',this.state.discription);
+        formData.append('cost',this.state.cost);
+         axios.post('./backend/product.php',formData)
          .then(function(response){
             console.log(response.data);
          })
@@ -125,7 +126,7 @@ export default class Admin_page extends React.Component{
                         <form onSubmit={this.handleSubmit} encType='multipart/form-data'>
                             <label>
                             Upload file:
-                            <input type="file" ref={this.fileInput} />
+                            <input type="file" ref={this.fileInput} onChange={this.onFileChange} />
                             </label>
                             <br />
                             <button type="submit">Submit</button>

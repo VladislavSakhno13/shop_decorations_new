@@ -63,19 +63,6 @@ export default class Admin_page extends React.Component{
                         })
                             console.log(data);
                         })
-                        
-                      
-                        /*axios.post('./backend/orders.php',JSON.stringify(data))
-                        .then(function(response){
-                            console.log(response.data);
-                            let data_for_basket = {
-                                order_id: response.data.id
-                            }
-                            axios.post('./backend/basket.php',JSON.stringify(data_for_basket))
-                            .then(function(response){
-                                console.log(response.data);
-                            })
-                        })*/
                     }
                     
                     tr.appendChild(td_id);

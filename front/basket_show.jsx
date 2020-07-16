@@ -5,10 +5,12 @@ import axios from 'axios';
 import {adminService, getStaus} from './adminService.js';
 export default class Basket_show extends React.Component{
     buy_product(){
-        let id = 5;
-        axios.put(`./backend/basket/${id}`)
+        getStaus().then(function(response){
+            let id = response.id;
+            axios.put(`./backend/basket/${id}`)
         .then(function(response){
             console.log(response.data);
+        })
         })
     }
     render(){
