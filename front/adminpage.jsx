@@ -70,6 +70,7 @@ export default class Admin_page extends React.Component{
         formData.append('name',this.state.name);
         formData.append('discription',this.state.discription);
         formData.append('cost',this.state.cost);
+        //console.log(this.state.cost);
          axios.post('./backend/product.php',formData)
          .then(function(response){
             console.log(response.data);
