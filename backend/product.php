@@ -22,7 +22,7 @@
         
         $road_img = decbin($_POST['img']);
 
-    $conect->query("INSERT INTO products (metal_product,type_product,rock_product,img,name,cost,sku,discription) VALUES('$id_metal[id]','$id_type[id]','$id_rock[id]','5','1',45,'jfghf','kjghjg'");
+        $conect->query("INSERT INTO products (metal_product,type_product,rock_product,img,name,cost,sku,discription) VALUES($id_metal[id],$id_type[id],$id_rock[id],'5','1',45,'jfghf','kjghjg')");
 
           $sql = $conect->query("SELECT * FROM `products` ORDER BY id_product DESC LIMIT 1");
           $data = $sql->fetch_assoc();
