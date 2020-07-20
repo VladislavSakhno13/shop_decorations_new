@@ -32,6 +32,7 @@ export default class Admin_page extends React.Component{
     }
     onFileChange(event){
         this.setState({img:event.target.files[0]});
+        console.log(event.target.files[0]);
     }
     /*handleSubmit(event) {
         event.preventDefault();
@@ -70,7 +71,7 @@ export default class Admin_page extends React.Component{
         formData.append('name',this.state.name);
         formData.append('discription',this.state.discription);
         formData.append('cost',this.state.cost);
-        //console.log(this.state.cost);
+        console.log(this.state.img);
          axios.post('./backend/product.php',formData)
          .then(function(response){
             console.log(response.data);
