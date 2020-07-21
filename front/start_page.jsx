@@ -13,7 +13,7 @@ import Basket_show from './basket_show.jsx';
 
 export default class Start_page extends React.Component{
     get_prducts(){
-        ReactDOM.render(<Buy_status/>,document.getElementById('main_page'));
+        ReactDOM.render(<Buy_status/>,document.getElementById('admin'));
     }
     open_basket(){
         ReactDOM.render(<Basket_show/>,document.getElementById('main_page'));
@@ -21,6 +21,7 @@ export default class Start_page extends React.Component{
     comeback(){
         ReactDOM.unmountComponentAtNode(document.getElementById('navigation'));
         ReactDOM.unmountComponentAtNode(document.getElementById('main_page'));
+        ReactDOM.unmountComponentAtNode(document.getElementById('admin'));
     }
     openAdminpage(){
         getStaus().then(function(response){

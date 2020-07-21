@@ -33,6 +33,7 @@ document.getElementById('out').onclick=function(){
             document.getElementById('sign-in').style.display = 'block'
             document.getElementById('out').style.display = 'none'
             document.getElementById('menu-for-user').style.display = 'none'
+            document.getElementById('open_admin_page').style.display = 'none'
         console.log(response.data);
     })
 }

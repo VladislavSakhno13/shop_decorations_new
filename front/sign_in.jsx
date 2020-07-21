@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 import Navigation from './navigation.jsx';
 import Start_page from './start_page.jsx';
 import Admin_page from './adminpage.jsx';
+import {adminService, getStaus} from './adminService.js';
 export default class Sign_in extends React.Component{
     constructor(props){
         super(props);
@@ -37,7 +38,11 @@ export default class Sign_in extends React.Component{
             document.getElementById('sign-in').style.display = 'none'
             document.getElementById('out').style.display = 'block'
             document.getElementById('menu-for-user').style.display = 'block'
-            
+            getStaus().then(function(response){
+                if(response.status){
+                    document.getElementById('open_admin_page').style.display = 'block'
+                }
+            })
         })  
     }
     render(){
