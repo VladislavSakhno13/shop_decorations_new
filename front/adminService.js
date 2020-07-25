@@ -14,6 +14,9 @@ import axios from 'axios';
         
     }
 
-export function isAdmin(){
-
+export function GetProduct(){
+   return axios.get('./backend/product.php')
+    .then(function(response){
+        return response.data;
+    })
 }

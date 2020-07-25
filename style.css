@@ -27,4 +27,11 @@
 #main_page{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    
+    justify-content: center;
+    width: 60%;
+}
+#main_page>div{
+    display: grid;
+    justify-content: center;
 }

@@ -90,6 +90,7 @@ export default class Admin_page extends React.Component{
                         <option>Платина</option>
                         <option>Латунь</option>
                         <option>Медь</option>
+                        <option>Золото</option>
                         </Form.Control>
 
                         <Form.Label>Тип Товара</Form.Label>
@@ -108,6 +109,7 @@ export default class Admin_page extends React.Component{
                         <option>Топаз</option>
                         <option>Рубин</option>
                         <option>Фианит</option>
+                        <option>нет</option>
                         </Form.Control>
 
                         <Form.Label>sku</Form.Label>
