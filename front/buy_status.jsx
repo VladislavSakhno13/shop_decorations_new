@@ -8,9 +8,11 @@ export default class Admin_page extends React.Component{
     render(){
             axios.get('./backend/product.php')
             .then(function(response){
+                console.log(response.data);
                 for(let i=0;i<response.data.length;i++){
-
-                    let tr = document.createElement('tr');
+                    let img = document.createElement('img');
+                    img.src = "data:image/png;base64," + response.data[9].img;
+                    /*let tr = document.createElement('tr');
     
                     let td_id = document.createElement('td');
                     td_id.innerHTML = response.data[i].id_product;
@@ -61,7 +63,7 @@ export default class Admin_page extends React.Component{
                                     console.log(response.data);
                                 })
                         })
-                            console.log(data);
+                            
                         })
                     }
                     
@@ -76,32 +78,15 @@ export default class Admin_page extends React.Component{
                     tr.appendChild(td_sku);
                     tr.appendChild(td_discription);
                     tr.appendChild(add_to_basket);
-                    document.getElementById('table_product').appendChild(tr);
+                    document.getElementById('table_product').appendChild(tr);*/
+                    document.getElementById('table_product').appendChild(img);
 
                 }
-                
+               
             })
         return(
             <div>
-                <Table striped bordered hover size="sm">
-                        <thead>
-                            <tr>
-                            <th >id</th>
-                            <th>Метал</th>
-                            <th>Тип</th>
-                            <th>Камень</th>
-                            <th>Иконка</th>
-                            <th>Название</th>
-                            <th>Цена</th>
-                            <th>sku</th>
-                            <th> Описание</th>
-                            <th>Добавить в корзину</th>
-                            </tr>
-                        </thead>
-                        <tbody id="table_product">
-            
-                        </tbody>
-                </Table>
+               
             </div>
         )
     }

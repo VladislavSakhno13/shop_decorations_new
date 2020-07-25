@@ -10,10 +10,18 @@ import Admin_page from './adminpage.jsx';
 import Navigation from './navigation.jsx';
 import {adminService, getStaus, isAdmin} from './adminService.js';
 import Basket_show from './basket_show.jsx';
+import Card_products from './card_products.jsx';
 
 export default class Start_page extends React.Component{
     get_prducts(){
-        ReactDOM.render(<Buy_status/>,document.getElementById('admin'));
+        for(let i=0;i<10;i++){
+           let div_for_product =  document.createElement('div');
+           div_for_product.id = i;
+            ReactDOM.render(<Card_products/>,div_for_product);
+            document.getElementById('main_page').appendChild(div_for_product)
+            }
+            
+        
     }
     open_basket(){
         ReactDOM.render(<Basket_show/>,document.getElementById('main_page'));
