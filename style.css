@@ -8,6 +8,14 @@
     margin: auto;
 }
 #form_sign_up{
+    background-color: #000;
+    margin: auto;
+    margin-top: 5%;
+    left: 50%;
+    
+
+}
+#sign_up{
     position: absolute;
     width: 30%;
     height: 450px;
@@ -26,8 +34,8 @@
     display: none;
 }
 #main_page{
+    position: absolute;
     display: grid;
-    
 }
 #list-product{
     display: grid;
