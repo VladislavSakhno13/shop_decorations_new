@@ -133,7 +133,6 @@ export default class Admin_page extends React.Component{
                             <input type="file" ref={this.fileInput} onChange={this.onFileChange} />
                             </label>
                             <br />
-                            <button type="submit">Submit</button>
                         </form>
 
                         <Button variant="secondary" onClick={this.Post_All_DataProduct}>Добавить товар</Button>{' '}
