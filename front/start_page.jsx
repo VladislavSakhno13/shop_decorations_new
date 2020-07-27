@@ -33,7 +33,7 @@ export default class Start_page extends React.Component{
     comeback(){
         ReactDOM.unmountComponentAtNode(document.getElementById('navigation'));
         ReactDOM.unmountComponentAtNode(document.getElementById('admin'));
-        //ReactDOM.render(<Main_component/>,document.getElementById('main_page'));
+        ReactDOM.render(<Main_component/>,document.getElementById('main_page'));
     }
     openAdminpage(){
         getStaus().then(function(response){
@@ -54,6 +54,7 @@ export default class Start_page extends React.Component{
         ReactDOM.render(<Sign_in/>,document.getElementById('sign_up'))
     }
     render(){
+        
         return(
             <div>
                 <Navbar bg="dark" variant="dark">

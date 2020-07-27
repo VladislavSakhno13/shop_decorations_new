@@ -7,7 +7,6 @@ export default class Openstatus extends React.Component{
     render(){
         axios.get('./backend/status_products.php')
         .then(function(response){
-            console.log(response.data);
             for(let i=0;i<response.data.length;i++){
                 let tr = document.createElement('tr');
 
