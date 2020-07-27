@@ -26,15 +26,20 @@ export default class Admin_page extends React.Component{
         this.cost = this.cost.bind(this);
         this.Post_All_DataProduct=this.Post_All_DataProduct.bind(this);
 
-        this.handleSubmit = this.handleSubmit.bind(this);
+        //this.handleSubmit = this.handleSubmit.bind(this);
+        this.onFileChange = this.onFileChange.bind(this);
         this.fileInput = React.createRef();
     }
-    handleSubmit(event) {
-        let formData = new FormData();
+    onFileChange(event){
+        this.setState({img:event.target.files[0]});
+        console.log(event.target.files[0]);
+    }
+    /*handleSubmit(event) {
         event.preventDefault();
-        this.setState({img:this.fileInput.current.files[0].name})
-        console.log(this.fileInput);
-      }
+        this.setState({img:this.fileInput.current.files[0]})
+        console.log(this.fileInput.current.files[0]);
+
+      }*/
     metal(event,name){
         this.setState({metal:event.target.value});
     }
@@ -56,64 +61,18 @@ export default class Admin_page extends React.Component{
     cost(event){
         this.setState({cost:event.target.value});
     }
-    Get_All_Product(){
-        axios.get('./backend/product.php')
-        .then(function(response){
-            for(let i=0;i<response.data.length;i++){
-                let tr = document.createElement('tr');
-
-                let td_id = document.createElement('td');
-                td_id.innerHTML = i+1;
-    
-                let td_metal = document.createElement('td');
-                td_metal.innerHTML = response.data[i].metal;
-
-                let td_type = document.createElement('td');
-                td_type.innerHTML = response.data[i].type;
-
-                let td_rock = document.createElement('td');
-                td_rock.innerHTML = response.data[i].rock;
-
-                let td_img = document.createElement('td');
-                td_img.innerHTML = response.data[i].img;
-
-                let td_name = document.createElement('td');
-                td_name.innerHTML = response.data[i].name;
-
-                let td_cost = document.createElement('td');
-                td_cost.innerHTML = response.data[i].cost;
-                let td_sku = document.createElement('td');
-                td_sku.innerHTML = response.data[i].sku;
-                
-                let td_discription = document.createElement('td');
-                td_discription.innerHTML = response.data[i].discription;
-                
-                tr.appendChild(td_id);
-                tr.appendChild(td_metal);
-                tr.appendChild(td_type);
-                tr.appendChild(td_rock);
-                tr.appendChild(td_img);
-                tr.appendChild(td_name);
-                tr.appendChild(td_cost);
-                tr.appendChild(td_sku);
-                tr.appendChild(td_discription);
-                document.getElementById('table_product').appendChild(tr);
-            }
-            
-        })
-    }
     Post_All_DataProduct(){
-       let Products_data = {
-            metal:this.state.metal,
-            type:this.state.type,
-            rock:this.state.rock,
-            sku:this.state.sku,
-            name:this.state.name,
-            discription:this.state.discription,
-            cost:this.state.cost,
-            img:this.state.img
-         };
-         axios.post('./backend/product.php',JSON.stringify(Products_data))
+        let formData = new FormData();
+        formData.append('img',this.state.img);
+        formData.append('metal',this.state.metal);
+        formData.append('type',this.state.type);
+        formData.append('rock',this.state.rock);
+        formData.append('sku',this.state.sku);
+        formData.append('name',this.state.name);
+        formData.append('discription',this.state.discription);
+        formData.append('cost',this.state.cost);
+        console.log(this.state.img);
+         axios.post('./backend/product.php',formData)
          .then(function(response){
             console.log(response.data);
          })
@@ -131,6 +90,7 @@ export default class Admin_page extends React.Component{
                         <option>Платина</option>
                         <option>Латунь</option>
                         <option>Медь</option>
+                        <option>Золото</option>
                         </Form.Control>
 
                         <Form.Label>Тип Товара</Form.Label>
@@ -149,6 +109,7 @@ export default class Admin_page extends React.Component{
                         <option>Топаз</option>
                         <option>Рубин</option>
                         <option>Фианит</option>
+                        <option>нет</option>
                         </Form.Control>
 
                         <Form.Label>sku</Form.Label>
@@ -166,14 +127,14 @@ export default class Admin_page extends React.Component{
                         <Form.Control size="lg" type="text" placeholder="Цена на товар" onChange={this.cost} />
 
 
-                        <form onSubmit={this.handleSubmit}>
+                        <form onSubmit={this.handleSubmit} encType='multipart/form-data'>
                             <label>
                             Upload file:
-                            <input type="file" ref={this.fileInput} />
+                            <input type="file" ref={this.fileInput} onChange={this.onFileChange} />
                             </label>
                             <br />
-                            <button type="submit">Submit</button>
                         </form>
+
                         <Button variant="secondary" onClick={this.Post_All_DataProduct}>Добавить товар</Button>{' '}
                     </Form.Group>
             </Form>

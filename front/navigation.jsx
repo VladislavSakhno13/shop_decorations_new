@@ -5,11 +5,18 @@ import {Nav} from 'react-bootstrap';
 import axios from 'axios';
 import Getproducts from './get_products.jsx';
 import Admin_page from './adminpage.jsx';
+import Openstatus from './openstatus.jsx';
 export default class Navigation extends React.Component{
+    openstatus(){
+        ReactDOM.unmountComponentAtNode(document.getElementById('admin'));
+        ReactDOM.render(<Openstatus/>,document.getElementById('admin'));
+    }
     open_product(){
+        ReactDOM.unmountComponentAtNode(document.getElementById('admin'));
         ReactDOM.render(<Getproducts/>,document.getElementById('admin'));
     }
     add_products(){
+        ReactDOM.unmountComponentAtNode(document.getElementById('admin'));
         ReactDOM.render(<Admin_page/>,document.getElementById('admin'));
     }
     render(){
@@ -23,7 +30,7 @@ export default class Navigation extends React.Component{
                             <Nav.Link onClick={this.open_product}>Получить список товаров</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link>Link</Nav.Link>
+                            <Nav.Link onClick={this.openstatus}>Статус оплаты</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
                         </Nav.Item>

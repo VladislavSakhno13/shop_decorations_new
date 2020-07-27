@@ -1,5 +1,6 @@
 *{
-    margin: auto 0;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 #admin_nav{
@@ -7,6 +8,14 @@
     margin: auto;
 }
 #form_sign_up{
+    background-color: #fff;
+    margin: auto;
+    margin-top: 5%;
+    left: 50%;
+    border: 1px solid #000;
+
+}
+#sign_up{
     position: absolute;
     width: 30%;
     height: 450px;
@@ -20,4 +29,43 @@
 }
 #open_admin_page{
     display: none;
+}
+#menu-for-user{
+    display: none;
+}
+#main_page{
+    position: absolute;
+    display: grid;
+    
+}
+#list-product{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    width: 80%;
+    justify-self: center;
+    align-self: center;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    
+}
+#box-for-product{
+    position: relative;
+    width: 100%;
+    height: 400px;
+}
+#img-product{
+    width: 100%;
+    height: 300px;
+}
+#open-more{
+    position:absolute; 
+	bottom:0;
+    width: 100%;
+    height: 50px;
+    background-color: #343a40;
+    color: #fff;
+    text-align: center;
+}
+#open-more:hover{
+    background-color: #5A5A5A;
 }
