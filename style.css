@@ -16,7 +16,7 @@
 
 }
 #sign_up{
-    position: absolute;
+    position: relative;
     width: 30%;
     height: 450px;
     margin: auto;
@@ -33,12 +33,12 @@
 #menu-for-user{
     display: none;
 }
-#main_page{
-    position: absolute;
+#box-for-grid{
     display: grid;
-    
+    justify-self: center;
+    align-self: center;
 }
-#list-product{
+#box_for_products{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     width: 80%;
