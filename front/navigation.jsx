@@ -7,6 +7,18 @@ import Getproducts from './get_products.jsx';
 import Admin_page from './adminpage.jsx';
 import Openstatus from './openstatus.jsx';
 export default class Navigation extends React.Component{
+    constructor(props){
+        super(props);
+        this.state={
+            state: "Set_products"
+        }
+    }
+     Get_products(){
+        this.setState({state:"Get_products"})
+     }
+     Open_status(){
+        this.setState({state:"Open_status"})
+     }
     openstatus(){
         ReactDOM.unmountComponentAtNode(document.getElementById('admin'));
         ReactDOM.render(<Openstatus/>,document.getElementById('admin'));

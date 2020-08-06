@@ -17,20 +17,20 @@ export default class Start_page extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            state: "A"
+            state_page: "Start_page"
         }
         this.changeStateProducts=this.changeStateProducts.bind(this);
-        this.changeStateProductsA=this.changeStateProductsA.bind(this);
+        this.changeStateProductsA=this.changeStateProducts_page.bind(this);
         this.changeStateAdmin=this.changeStateAdmin.bind(this);
     }
     changeStateProducts(){
-       this.setState({state:"B"})
+       this.setState({state_page:"B"})
     }
-    changeStateProductsA(){
-        this.setState({state:"A"})
+    changeStateProducts_page(){
+        this.setState({state_page:"Start_page"})
      }
      changeStateAdmin(){
-        this.setState({state:"Admin"})
+        this.setState({state_page:"Admin"})
      }
     open_basket(){
         ReactDOM.render(<Basket_show/>,document.getElementById('main_page'));
@@ -42,10 +42,13 @@ export default class Start_page extends React.Component{
         ReactDOM.render(<Sign_in/>,document.getElementById('sign_up'))
     }
     render(){
-        if(this.state.state === "A"){
+        let i = getStaus().then(function(response){ return response.status})
+        console.log(i);
+        if(this.state.state_page === "Start_page"){
         return(
             <div>
                 <div>
+
                     <Navbar bg="dark" variant="dark">
                             <Navbar.Brand href="#home">Navbar</Navbar.Brand>
                             <Nav className="mr-auto">
@@ -76,11 +79,11 @@ export default class Start_page extends React.Component{
                     </Navbar>
                 </div>
                 <div id="main_inform">
-                <Carousel>
+                <Carousel id="carusel">
                         <Carousel.Item>
                             <img
                             className="d-block w-100"
-                            src="https://cdn.gold24.ru/s/ru/deals/x3adcad90b4922cb549f60e49d569be0e94c72d2c.jpg.pagespeed.ic.Kcdu4ad3Hc.jpg"
+                            src=""
                             alt="First slide"
                             />
                             <Carousel.Caption>
@@ -91,7 +94,7 @@ export default class Start_page extends React.Component{
                         <Carousel.Item>
                             <img
                             className="d-block w-100"
-                            src="https://trcmoscow.ru/Upload/objects/Events.Event/picture/53/ba/dd/e3/4128102_7111629.jpg"
+                            src=""
                             alt="Third slide"
                             />
 
@@ -103,7 +106,7 @@ export default class Start_page extends React.Component{
                         <Carousel.Item>
                             <img
                             className="d-block w-100"
-                            src="https://www.hotevents.ru/img/m/valtera/val_2013-09-20.jpg"
+                            src=""
                             alt="Third slide"
                             />
 
@@ -119,7 +122,7 @@ export default class Start_page extends React.Component{
         )
         }
 
-        if(this.state.state === "B"){
+        if(this.state.state_page === "B"){
             GetProduct().then(function(response){
                 for(let i=0;i<response.length;i++){
                     let div_for_product =  document.createElement('div');
@@ -133,12 +136,12 @@ export default class Start_page extends React.Component{
                     <Navbar bg="dark" variant="dark">
                             <Navbar.Brand href="#home">Navbar</Navbar.Brand>
                             <Nav className="mr-auto">
-                            <Nav.Link onClick={this.changeStateProductsA}>Главная страница</Nav.Link>
-                            <Nav.Link onClick={this.changeStateProducts}>Список товаров</Nav.Link>
+                            <Nav.Link onClick={this.changeStateProducts_page}>Главная страница</Nav.Link>
+                            <Nav.Link>Список товаров</Nav.Link>
 
                         
 
-                            <Nav.Link id="open_admin_page" onClick={this.openAdminpage}>Admin page</Nav.Link>
+                            <Nav.Link id="open_admin_page" onClick={this.changeStateAdmin}>Admin page</Nav.Link>
                             </Nav>
                             <Form inline>
                             <ButtonGroup aria-label="Basic example">
@@ -167,27 +170,17 @@ export default class Start_page extends React.Component{
             )
 
         }
-        if(this.state.state === "Admin"){
-            getStaus().then(function(response){
-                if(response.status){
-                    ReactDOM.render(<Navigation/>,document.getElementById('navigation'));
-                    ReactDOM.render(<Admin_page/>,document.getElementById('admin'));
-                }
-                else{
-                    alert("вы не админ");
-                }
-            })
+       
+        
+        if(this.state.state_page === "Admin" && admin_status){
             return(
                 <div>
                     <div>
                     <Navbar bg="dark" variant="dark">
                             <Navbar.Brand href="#home">Navbar</Navbar.Brand>
                             <Nav className="mr-auto">
-                            <Nav.Link onClick={this.changeStateProductsA}>Главная страница</Nav.Link>
+                            <Nav.Link onClick={this.changeStateProducts_page}>Главная страница</Nav.Link>
                             <Nav.Link onClick={this.changeStateProducts}>Список товаров</Nav.Link>
-
-                        
-
                             <Nav.Link id="open_admin_page">Admin page</Nav.Link>
                             </Nav>
                             <Form inline>
@@ -209,8 +202,10 @@ export default class Start_page extends React.Component{
                             </Form>
                     </Navbar>
                     </div>
-                    <div id="navigation"></div>
-                    <div id="admin"></div>
+                    <div id="navigation">
+                        <Navigation/>
+                        </div>
+                    <div id="admin"><Admin_page/></div>
                 </div>
             )
         }
