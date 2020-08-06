@@ -20,11 +20,11 @@ export default class Start_page extends React.Component{
             state_page: "Start_page"
         }
         this.changeStateProducts=this.changeStateProducts.bind(this);
-        this.changeStateProductsA=this.changeStateProducts_page.bind(this);
+        this.changeStateProducts_page=this.changeStateProducts_page.bind(this);
         this.changeStateAdmin=this.changeStateAdmin.bind(this);
     }
     changeStateProducts(){
-       this.setState({state_page:"B"})
+       this.setState({state_page:"state_products"})
     }
     changeStateProducts_page(){
         this.setState({state_page:"Start_page"})
@@ -43,7 +43,7 @@ export default class Start_page extends React.Component{
     }
     render(){
         let i = getStaus().then(function(response){ return response.status})
-        console.log(i);
+        console.log(Promise.resolve(i));
         if(this.state.state_page === "Start_page"){
         return(
             <div>
@@ -122,7 +122,7 @@ export default class Start_page extends React.Component{
         )
         }
 
-        if(this.state.state_page === "B"){
+        if(this.state.state_page === "state_products"){
             GetProduct().then(function(response){
                 for(let i=0;i<response.length;i++){
                     let div_for_product =  document.createElement('div');
@@ -171,8 +171,8 @@ export default class Start_page extends React.Component{
 
         }
        
-        
-        if(this.state.state_page === "Admin" && admin_status){
+        let admin_status = getStaus().then(function(response){ if(response.status){return true}});
+        if((this.state.state_page === "Admin") && admin_status){
             return(
                 <div>
                     <div>
