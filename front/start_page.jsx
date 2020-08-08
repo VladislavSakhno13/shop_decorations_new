@@ -17,17 +17,23 @@ export default class Start_page extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            state_page: "Start_page"
+            state_page: "Start_page",
+            data_for_cads: ""
         }
         this.changeStateProducts=this.changeStateProducts.bind(this);
         this.changeStateProducts_page=this.changeStateProducts_page.bind(this);
         this.changeStateAdmin=this.changeStateAdmin.bind(this);
+        this.setDataCard=this.setDataCard.bind(this);
+    }
+    setDataCard(){
+        GetProduct().then(function(response){
+            //this.setState({data_for_cads:response})
+            console.log(response)
+        })
     }
     create_products(){
-        //return <Card_products/>;
-        GetProduct().then(function(response){
-           return 1;   
-        })
+        console.log(this.state.data_for_cads);
+        return <Card_products/>;
         
     }
     changeStateProducts(){
@@ -128,6 +134,7 @@ export default class Start_page extends React.Component{
         }
 
         if(this.state.state_page === "state_products"){
+            this.setDataCard();
             return(
                 <div>
                     <div>
