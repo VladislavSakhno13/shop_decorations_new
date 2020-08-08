@@ -23,6 +23,13 @@ export default class Start_page extends React.Component{
         this.changeStateProducts_page=this.changeStateProducts_page.bind(this);
         this.changeStateAdmin=this.changeStateAdmin.bind(this);
     }
+    create_products(){
+        //return <Card_products/>;
+        GetProduct().then(function(response){
+           return 1;   
+        })
+        
+    }
     changeStateProducts(){
        this.setState({state_page:"state_products"})
     }
@@ -42,8 +49,6 @@ export default class Start_page extends React.Component{
         ReactDOM.render(<Sign_in/>,document.getElementById('sign_up'))
     }
     render(){
-        let i = getStaus().then(function(response){ return response.status})
-        console.log(Promise.resolve(i));
         if(this.state.state_page === "Start_page"){
         return(
             <div>
@@ -123,13 +128,6 @@ export default class Start_page extends React.Component{
         }
 
         if(this.state.state_page === "state_products"){
-            GetProduct().then(function(response){
-                for(let i=0;i<response.length;i++){
-                    let div_for_product =  document.createElement('div');
-                     ReactDOM.render(<Card_products  img={'data:image/png;base64,'+response[i].img} name = {response[i].name} cost = {response[i].cost}/>,div_for_product);
-                     document.getElementById('box_for_products').appendChild(div_for_product);
-                     }
-            })
             return(
                 <div>
                     <div>
@@ -163,7 +161,7 @@ export default class Start_page extends React.Component{
                     </Navbar>
                     </div>
                     <div id="box-for-grid">
-                        <div id="box_for_products"></div>
+                        <div id="box_for_products">{this.create_products()}</div>
                     </div>
                     
                 </div>
@@ -171,7 +169,6 @@ export default class Start_page extends React.Component{
 
         }
        
-        let admin_status = getStaus().then(function(response){ if(response.status){return true}});
         if((this.state.state_page === "Admin") && admin_status){
             return(
                 <div>
