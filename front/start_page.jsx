@@ -18,22 +18,23 @@ export default class Start_page extends React.Component{
         super(props);
         this.state={
             state_page: "Start_page",
-            data_for_cads: ""
+            data_for_cards: ""
         }
         this.changeStateProducts=this.changeStateProducts.bind(this);
         this.changeStateProducts_page=this.changeStateProducts_page.bind(this);
         this.changeStateAdmin=this.changeStateAdmin.bind(this);
-        this.setDataCard=this.setDataCard.bind(this);
+        this.componentWillMount=this.componentWillMount.bind(this);
     }
-    setDataCard(){
-        GetProduct().then(function(response){
-            //this.setState({data_for_cads:response})
-            console.log(response)
-        })
-    }
+    
+   componentWillMount(){
+       this.state.data_for_cards = GetProduct();
+       console.log(this.state.data_for_cards)
+   }
     create_products(){
-        console.log(this.state.data_for_cads);
-        return <Card_products/>;
+        for(let i=0;i<10;i++){
+            return  <Card_products img = {this.state.data_for_cards.img}/>; 
+        }
+       
         
     }
     changeStateProducts(){
@@ -134,7 +135,6 @@ export default class Start_page extends React.Component{
         }
 
         if(this.state.state_page === "state_products"){
-            this.setDataCard();
             return(
                 <div>
                     <div>
