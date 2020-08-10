@@ -18,7 +18,7 @@ export default class Start_page extends React.Component{
         super(props);
         this.state={
             state_page: "Start_page",
-            data_for_cards: "1"
+            data_for_cards: []
         }
         this.changeStateProducts=this.changeStateProducts.bind(this);
         this.changeStateProducts_page=this.changeStateProducts_page.bind(this);
@@ -27,7 +27,15 @@ export default class Start_page extends React.Component{
     }
     
     componentDidMount(){
-        axios.get('./backend/products.php').then(function(response){this.setState({data_for_cards:response.data})});
+        fetch('./backend/product.php').then(res => res.json())
+        .then(
+            (result) => {
+                this.setState({data_for_cards:result});
+                console.log(this.state.data_for_cards
+                    )
+            }
+        )
+        
     }
     changeStateProducts(){
        this.setState({state_page:"state_products"})
@@ -125,7 +133,9 @@ export default class Start_page extends React.Component{
                     </Navbar>
                     </div>
                     <div id="box-for-grid">
-                        <div id="box_for_products">{data_for_cards}</div>
+                        <div id="box_for_products">{data_for_cards.map(data_for_cards =>(
+                            <Card_products name={data_for_cards.name} cost={data_for_cards.cost} img={'data:image/png;base64,'+data_for_cards.img}/>
+                        ) )}</div>
                     </div>
                     
                 </div>
@@ -172,3 +182,4 @@ export default class Start_page extends React.Component{
         }
     }
 }
+//{<Card_products img={'data:image/png;base64,'+data_for_cards[0].img}/>}
