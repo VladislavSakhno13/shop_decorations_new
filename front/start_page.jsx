@@ -18,24 +18,16 @@ export default class Start_page extends React.Component{
         super(props);
         this.state={
             state_page: "Start_page",
-            data_for_cards: ""
+            data_for_cards: "1"
         }
         this.changeStateProducts=this.changeStateProducts.bind(this);
         this.changeStateProducts_page=this.changeStateProducts_page.bind(this);
         this.changeStateAdmin=this.changeStateAdmin.bind(this);
-        this.componentWillMount=this.componentWillMount.bind(this);
+        
     }
     
-   componentWillMount(){
-       this.state.data_for_cards = GetProduct();
-       console.log(this.state.data_for_cards)
-   }
-    create_products(){
-        for(let i=0;i<10;i++){
-            return  <Card_products img = {this.state.data_for_cards.img}/>; 
-        }
-       
-        
+    componentDidMount(){
+        axios.get('./backend/products.php').then(function(response){this.setState({data_for_cards:response.data})});
     }
     changeStateProducts(){
        this.setState({state_page:"state_products"})
@@ -56,6 +48,7 @@ export default class Start_page extends React.Component{
         ReactDOM.render(<Sign_in/>,document.getElementById('sign_up'))
     }
     render(){
+        const {state_page, data_for_cards} = this.state;
         if(this.state.state_page === "Start_page"){
         return(
             <div>
@@ -91,43 +84,7 @@ export default class Start_page extends React.Component{
                     </Navbar>
                 </div>
                 <div id="main_inform">
-                <Carousel id="carusel">
-                        <Carousel.Item>
-                            <img
-                            className="d-block w-100"
-                            src=""
-                            alt="First slide"
-                            />
-                            <Carousel.Caption>
-                            <h3>First slide label</h3>
-                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                            </Carousel.Caption>
-                        </Carousel.Item>
-                        <Carousel.Item>
-                            <img
-                            className="d-block w-100"
-                            src=""
-                            alt="Third slide"
-                            />
-
-                            <Carousel.Caption>
-                            <h3>Second slide label</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </Carousel.Caption>
-                        </Carousel.Item>
-                        <Carousel.Item>
-                            <img
-                            className="d-block w-100"
-                            src=""
-                            alt="Third slide"
-                            />
-
-                            <Carousel.Caption>
-                            <h3>Third slide label</h3>
-                            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                            </Carousel.Caption>
-                        </Carousel.Item>
-                </Carousel>
+               
                 </div>
  
             </div>
@@ -168,7 +125,7 @@ export default class Start_page extends React.Component{
                     </Navbar>
                     </div>
                     <div id="box-for-grid">
-                        <div id="box_for_products">{this.create_products()}</div>
+                        <div id="box_for_products">{data_for_cards}</div>
                     </div>
                     
                 </div>
