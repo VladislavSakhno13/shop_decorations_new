@@ -27,14 +27,13 @@ export default class Start_page extends React.Component{
     }
     
     componentDidMount(){
-        fetch('./backend/product.php').then(res => res.json())
+        axios.get('./backend/product.php').then((response) => this.setState({data_for_cards:response.data}))
+        /*fetch('./backend/product.php').then(res => res.json())
         .then(
             (result) => {
                 this.setState({data_for_cards:result});
-                console.log(this.state.data_for_cards
-                    )
             }
-        )
+        )*/
         
     }
     changeStateProducts(){
@@ -57,7 +56,7 @@ export default class Start_page extends React.Component{
     }
     render(){
         const {state_page, data_for_cards} = this.state;
-        if(this.state.state_page === "Start_page"){
+        if(state_page === "Start_page"){
         return(
             <div>
                 <div>
@@ -99,7 +98,7 @@ export default class Start_page extends React.Component{
         )
         }
 
-        if(this.state.state_page === "state_products"){
+        if(state_page === "state_products"){
             return(
                 <div>
                     <div>
@@ -143,7 +142,7 @@ export default class Start_page extends React.Component{
 
         }
        
-        if((this.state.state_page === "Admin") && admin_status){
+        if((state_page === "Admin") && admin_status){
             return(
                 <div>
                     <div>
