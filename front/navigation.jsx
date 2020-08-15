@@ -10,45 +10,72 @@ export default class Navigation extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            state: "Set_products"
+            set_admin_page:"post_products",
+            data_products:[]
         }
+        this.StateGetProducts=this.StateGetProducts.bind(this);
+        this.StateGetProducts=this.StateGetProducts.bind(this);
     }
+    data_products(){
+        axios.get('./backend/product.php').then((response)=> this.setState())
+    }
+    StatePostProducts(){
+        this.setState({set_admin_page:"post_products"})
+     }
+     StateGetProducts(){
+        this.setState({set_admin_page:"Get_products"})
+     }
+     StateStatusProducts(){
+        this.setState({set_admin_page:"Status_products"})
+     }
      Get_products(){
         this.setState({state:"Get_products"})
      }
      Open_status(){
         this.setState({state:"Open_status"})
      }
-    openstatus(){
-        ReactDOM.unmountComponentAtNode(document.getElementById('admin'));
-        ReactDOM.render(<Openstatus/>,document.getElementById('admin'));
-    }
-    open_product(){
-        ReactDOM.unmountComponentAtNode(document.getElementById('admin'));
-        ReactDOM.render(<Getproducts/>,document.getElementById('admin'));
-    }
-    add_products(){
-        ReactDOM.unmountComponentAtNode(document.getElementById('admin'));
-        ReactDOM.render(<Admin_page/>,document.getElementById('admin'));
-    }
     render(){
-        return(
-            <div>
-               <Nav>
-                        <Nav.Item>
-                            <Nav.Link onClick={this.add_products}>Добавить товары</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link onClick={this.open_product}>Получить список товаров</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link onClick={this.openstatus}>Статус оплаты</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                        </Nav.Item>
-            </Nav>
+        const {set_admin_page, data_products} = this.state;
+        if(set_admin_page == "post_products"){
+            return(
+                <div>
+                   <Nav>
+                            <Nav.Item>
+                                <Nav.Link>Добавить товары</Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item>
+                                <Nav.Link onClick={this.StateGetProducts}>Получить список товаров</Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item>
+                                <Nav.Link onClick={this.StateGetProducts}>Статус оплаты</Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item>
+                            </Nav.Item>
+                </Nav>
+                <div><Admin_page/></div>
+                </div>
+            )
+        }
+        if(set_admin_page == "Get_products"){
+            return(
+                <div>
+                    <Nav>
+                                <Nav.Item>
+                                    <Nav.Link>Добавить товары</Nav.Link>
+                                </Nav.Item>
+                                <Nav.Item>
+                                    <Nav.Link>Получить список товаров</Nav.Link>
+                                </Nav.Item>
+                                <Nav.Item>
+                                    <Nav.Link>Статус оплаты</Nav.Link>
+                                </Nav.Item>
+                                <Nav.Item>
+                                </Nav.Item>
+                    </Nav>
+                <div><Getproducts/></div>
             </div>
-        )
+            )
+        }
     }
 
 }

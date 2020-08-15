@@ -28,13 +28,6 @@ export default class Start_page extends React.Component{
     
     componentDidMount(){
         axios.get('./backend/product.php').then((response) => this.setState({data_for_cards:response.data}))
-        /*fetch('./backend/product.php').then(res => res.json())
-        .then(
-            (result) => {
-                this.setState({data_for_cards:result});
-            }
-        )*/
-        
     }
     changeStateProducts(){
        this.setState({state_page:"state_products"})
@@ -142,7 +135,7 @@ export default class Start_page extends React.Component{
 
         }
        
-        if((state_page === "Admin") && admin_status){
+        if((state_page === "Admin")){
             return(
                 <div>
                     <div>
@@ -175,10 +168,8 @@ export default class Start_page extends React.Component{
                     <div id="navigation">
                         <Navigation/>
                         </div>
-                    <div id="admin"><Admin_page/></div>
                 </div>
             )
         }
     }
 }
-//{<Card_products img={'data:image/png;base64,'+data_for_cards[0].img}/>}
