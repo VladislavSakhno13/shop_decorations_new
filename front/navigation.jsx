@@ -16,9 +16,6 @@ export default class Navigation extends React.Component{
         this.StateGetProducts=this.StateGetProducts.bind(this);
         this.StateGetProducts=this.StateGetProducts.bind(this);
     }
-    data_products(){
-        axios.get('./backend/product.php').then((response)=> this.setState())
-    }
     StatePostProducts(){
         this.setState({set_admin_page:"post_products"})
      }

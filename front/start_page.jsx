@@ -11,7 +11,7 @@ import Navigation from './navigation.jsx';
 import {adminService, getStaus, GetProduct} from './adminService.js';
 import Basket_show from './basket_show.jsx';
 import Card_products from './card_products.jsx';
-import Main_component from './main_component.jsx';
+
 
 export default class Start_page extends React.Component{
     constructor(props){
