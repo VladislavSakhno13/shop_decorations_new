@@ -11,6 +11,7 @@ import Navigation from './navigation.jsx';
 import {adminService, getStaus, GetProduct} from './adminService.js';
 import Basket_show from './basket_show.jsx';
 import Card_products from './card_products.jsx';
+import More_product from './more_product.jsx';
 
 
 export default class Start_page extends React.Component{
@@ -18,14 +19,20 @@ export default class Start_page extends React.Component{
         super(props);
         this.state={
             state_page: "Start_page",
-            data_for_cards: []
+            data_for_cards: [],
+            number_product: 1
         }
         this.changeStateProducts=this.changeStateProducts.bind(this);
         this.changeStateProducts_page=this.changeStateProducts_page.bind(this);
         this.changeStateAdmin=this.changeStateAdmin.bind(this);
-        
+        this.handleChange = this.handleChange.bind(this);
     }
-    
+    open_more_product(){
+        return <More_product/>
+    }
+    handleChange(){
+        this.setState({state_page:"open_more"})
+    }
     componentDidMount(){
         axios.get('./backend/product.php').then((response) => this.setState({data_for_cards:response.data}))
     }
@@ -48,7 +55,8 @@ export default class Start_page extends React.Component{
         ReactDOM.render(<Sign_in/>,document.getElementById('sign_up'))
     }
     render(){
-        const {state_page, data_for_cards} = this.state;
+        const {state_page, data_for_cards,number_product} = this.state;
+        console.log(data_for_cards);
         if(state_page === "Start_page"){
         return(
             <div>
@@ -126,7 +134,7 @@ export default class Start_page extends React.Component{
                     </div>
                     <div id="box-for-grid">
                         <div id="box_for_products">{data_for_cards.map(data_for_cards =>(
-                            <Card_products name={data_for_cards.name} cost={data_for_cards.cost} img={'data:image/png;base64,'+data_for_cards.img}/>
+                            <Card_products name={data_for_cards.name} cost={data_for_cards.cost}  img={'data:image/png;base64,'+data_for_cards.img} handleChange={this.handleChange}/>
                         ) )}</div>
                     </div>
                     
@@ -167,6 +175,43 @@ export default class Start_page extends React.Component{
                     </div>
                     <div id="navigation">
                         <Navigation/>
+                        </div>
+                </div>
+            )
+        }
+
+        if((state_page === "open_more")){
+            return(
+                <div>
+                    <div>
+                    <Navbar bg="dark" variant="dark">
+                            <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+                            <Nav className="mr-auto">
+                            <Nav.Link onClick={this.changeStateProducts_page}>Главная страница</Nav.Link>
+                            <Nav.Link onClick={this.changeStateProducts}>Список товаров</Nav.Link>
+                            <Nav.Link id="open_admin_page">Admin page</Nav.Link>
+                            </Nav>
+                            <Form inline>
+                            <ButtonGroup aria-label="Basic example">
+                                <Button variant="secondary" id="sign-in" onClick={this.openSign_in}>Авторизация</Button>
+                                <Button variant="secondary" id="sign-up" onClick={this.openSign_up}>Регистрация</Button>
+                                
+
+                                <NavDropdown title="Пользователь" id="basic-nav-dropdown" id="menu-for-user">
+                                    <NavDropdown.Item onClick={this.open_basket}>Моя корзина</NavDropdown.Item>
+                                    <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+                                    <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                                    <NavDropdown.Divider />
+                                    <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                                </NavDropdown>
+
+                                <Button variant="secondary" id="out">Выход</Button>
+                            </ButtonGroup>
+                            </Form>
+                    </Navbar>
+                    </div>
+                    <div id="navigation">
+                        <More_product img={'data:image/png;base64,'+data_for_cards[number_product].img}/>
                         </div>
                 </div>
             )

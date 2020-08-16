@@ -17,7 +17,18 @@ export default class Start_page extends React.Component{
    render(){
        return(
            <div>
-               123
+               <div>
+                   <img src={this.props.img} alt=""/>
+               </div>
+               <div>
+                   <div>{this.props.name}</div>
+                   <div>{this.props.metal}</div>
+                   <div>{this.props.type}</div>
+                   <div>{this.props.rock}</div>
+                   <div>{this.props.sku}</div>
+                   <div>{this.props.discription}</div>
+                   <div>В корзину</div>
+               </div>
            </div>
        )
    }
