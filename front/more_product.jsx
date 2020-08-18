@@ -15,19 +15,20 @@ import Card_products from './card_products.jsx';
 
 export default class Start_page extends React.Component{
    render(){
+       console.log(this.props.person_data)
        return(
-           <div>
-               <div>
-                   <img src={this.props.img} alt=""/>
+           <div id="prosuct_box">
+               <div id="box-for-img">
+                   <img id="product_img" src={this.props.img} alt=""/>
                </div>
                <div>
-                   <div>{this.props.name}</div>
-                   <div>{this.props.metal}</div>
-                   <div>{this.props.type}</div>
-                   <div>{this.props.rock}</div>
-                   <div>{this.props.sku}</div>
-                   <div>{this.props.discription}</div>
-                   <div>В корзину</div>
+                   <div className="product_text_box">Название: {this.props.name}</div>
+                   <div className="product_text_box">Метал изделия: {this.props.metal}</div>
+                   <div className="product_text_box">Тип изделия: {this.props.type}</div>
+                   <div className="product_text_box">Камент изделия: {this.props.rock}</div>
+                   <div className="product_text_box">SKU: {this.props.sku}</div>
+                   <div className="product_text_box">Описание: {this.props.discription}</div>
+                   <div id="button-basket">В корзину</div>
                </div>
            </div>
        )

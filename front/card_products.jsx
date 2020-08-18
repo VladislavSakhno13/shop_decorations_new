@@ -11,7 +11,7 @@ export default class Card_products extends React.Component{
                 <img src={this.props.img} alt="" id="img-product"/>
                 <div>{this.props.name}</div>
                 <div>{this.props.cost}</div>
-                <div id="open-more" onClick={this.props.handleChange}>Подробнее</div>
+                <div id="open-more" onClick={()=>this.props.handleChange(this.props.index)}>Подробнее</div>
             </div>
         )
     }
