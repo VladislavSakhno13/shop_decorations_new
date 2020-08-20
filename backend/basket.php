@@ -15,7 +15,7 @@ $inputJSON = file_get_contents('php://input');
 }
      if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
-        $conect->query("INSERT INTO basket (`orders_id`,`status_id`) VALUES('$input[order_id]',1)");
+        $conect->query("INSERT INTO basket (`orders_id`,`status_id`,`customer_id`) VALUES('$input[product_id]',1,'$input[person_id]')");
         
          $sql = $conect->query("SELECT * FROM `basket` ORDER BY `id` DESC LIMIT 1");
          $data = $sql->fetch_assoc();

@@ -28,6 +28,7 @@ export default class Start_page extends React.Component{
         this.changeStateProducts_page=this.changeStateProducts_page.bind(this);
         this.changeStateAdmin=this.changeStateAdmin.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.change_basketPage=this.change_basketPage.bind(this);
     }
     handleChange(index){
         this.setState({state_page: "open_more"});
@@ -38,6 +39,9 @@ export default class Start_page extends React.Component{
         axios.get('./backend/product.php').then((response) => this.setState({data_for_cards:response.data}));
         axios.get('./backend/carusel.php').then((response)=>this.setState({data_carusel:response.data}));
         getStaus().then((response)=> this.setState({person_data:response}));
+    }
+    change_basketPage(){
+        this.setState({state_page:"basket_open"})
     }
     changeStateProducts(){
        this.setState({state_page:"state_products"})
@@ -82,7 +86,7 @@ export default class Start_page extends React.Component{
                                 
 
                                 <NavDropdown title="Пользователь" id="basic-nav-dropdown" id="menu-for-user">
-                                    <NavDropdown.Item onClick={this.open_basket}>Моя корзина</NavDropdown.Item>
+                                    <NavDropdown.Item onClick={this.change_basketPage}>Моя корзина</NavDropdown.Item>
                                     <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
                                     <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
                                     <NavDropdown.Divider />
@@ -212,8 +216,42 @@ export default class Start_page extends React.Component{
                     </Navbar>
                     </div>
                     <div id="navigation">
-                        <More_product img={'data:image/png;base64,'+data_for_cards[number_product].img} cost={data_for_cards[number_product].cost} name={data_for_cards[number_product].name} metal={data_for_cards[number_product].metal} type={data_for_cards[number_product].type} rock={data_for_cards[number_product].rock} discription={data_for_cards[number_product].discription} person_data={person_data}/>
+                        <More_product img={'data:image/png;base64,'+data_for_cards[number_product].img} cost={data_for_cards[number_product].cost} name={data_for_cards[number_product].name} metal={data_for_cards[number_product].metal} type={data_for_cards[number_product].type} rock={data_for_cards[number_product].rock} discription={data_for_cards[number_product].discription} person_data={person_data} product_id={data_for_cards[number_product].id_product}/>
                         </div>
+                </div>
+            )
+        }
+        if(state_page==="basket_open"){
+            return(
+                <div>
+                    <div>
+                    <Navbar bg="dark" variant="dark">
+                            <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+                            <Nav className="mr-auto">
+                            <Nav.Link onClick={this.changeStateProducts_page}>Главная страница</Nav.Link>
+                            <Nav.Link onClick={this.changeStateProducts}>Список товаров</Nav.Link>
+                            <Nav.Link id="open_admin_page">Admin page</Nav.Link>
+                            </Nav>
+                            <Form inline>
+                            <ButtonGroup aria-label="Basic example">
+                                <Button variant="secondary" id="sign-in" onClick={this.openSign_in}>Авторизация</Button>
+                                <Button variant="secondary" id="sign-up" onClick={this.openSign_up}>Регистрация</Button>
+                                
+
+                                <NavDropdown title="Пользователь" id="basic-nav-dropdown" id="menu-for-user">
+                                    <NavDropdown.Item onClick={this.open_basket}>Моя корзина</NavDropdown.Item>
+                                    <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+                                    <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                                    <NavDropdown.Divider />
+                                    <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                                </NavDropdown>
+
+                                <Button variant="secondary" id="out">Выход</Button>
+                            </ButtonGroup>
+                            </Form>
+                    </Navbar>
+                    </div>
+                    <div>123</div>
                 </div>
             )
         }
