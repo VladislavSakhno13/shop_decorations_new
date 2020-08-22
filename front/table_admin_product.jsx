@@ -1,9 +1,4 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import {Form,Button,Table} from 'react-bootstrap';
-import axios from 'axios';
-import Basket_show from './basket_show.jsx';
-import ReactDOM from 'react-dom';
 export default class Table_product extends React.Component{
     render(){
         return(

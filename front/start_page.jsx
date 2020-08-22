@@ -5,8 +5,6 @@ import {Form,Button,Table,Nav,Navbar,NavDropdown,FormControl,ButtonGroup,Carouse
 import axios from 'axios';
 import Sign_up from './sign_up.jsx';
 import Sign_in from './sign_in.jsx';
-import Buy_status from './buy_status.jsx';
-import Admin_page from './adminpage.jsx';
 import Navigation from './navigation.jsx';
 import {adminService, getStaus, GetProduct} from './adminService.js';
 import Basket_show from './basket_show.jsx';
@@ -22,7 +20,8 @@ export default class Start_page extends React.Component{
             data_for_cards: [],
             number_product: 1,
             data_carusel:"",
-            person_data:""
+            person_data:"",
+            basket_data:[]
         }
         this.changeStateProducts=this.changeStateProducts.bind(this);
         this.changeStateProducts_page=this.changeStateProducts_page.bind(this);
@@ -39,6 +38,7 @@ export default class Start_page extends React.Component{
         axios.get('./backend/product.php').then((response) => this.setState({data_for_cards:response.data}));
         axios.get('./backend/carusel.php').then((response)=>this.setState({data_carusel:response.data}));
         getStaus().then((response)=> this.setState({person_data:response}));
+        axios.get(`./backend/basket.php?customer_id=${this.state.person_data.id}`).then((response)=>this.setState({basket_data:response.data}))
     }
     change_basketPage(){
         this.setState({state_page:"basket_open"})
@@ -62,8 +62,8 @@ export default class Start_page extends React.Component{
         ReactDOM.render(<Sign_in/>,document.getElementById('sign_up'))
     }
     render(){
-        const {state_page, data_for_cards,number_product,person_data} = this.state;
-        console.log(data_for_cards);
+        const {state_page, data_for_cards,number_product,person_data,basket_data} = this.state;
+        console.log(basket_data);
         if(state_page === "Start_page"){
         return(
             <div>
@@ -251,7 +251,21 @@ export default class Start_page extends React.Component{
                             </Form>
                     </Navbar>
                     </div>
-                    <div>123</div>
+                    <div>
+                        <Table striped bordered hover size="sm">
+                            <thead>
+                                <tr>
+                                <th >#</th>
+                                <th>Цена</th>
+                                <th>Название</th>
+                                <th>Статус</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table_for_basket">
+
+                            </tbody>
+                        </Table>
+                    </div>
                 </div>
             )
         }
