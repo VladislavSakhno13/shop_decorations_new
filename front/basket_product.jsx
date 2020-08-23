@@ -1,5 +1,5 @@
 import React from 'react';
-export default class Basket_show extends React.Component{
+export default class Basket_product extends React.Component{
     render(){
         return(
                     
