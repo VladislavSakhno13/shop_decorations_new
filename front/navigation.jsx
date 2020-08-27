@@ -25,12 +25,6 @@ export default class Navigation extends React.Component{
      StateStatusProducts(){
         this.setState({set_admin_page:"Status_products"})
      }
-     Get_products(){
-        this.setState({state:"Get_products"})
-     }
-     Open_status(){
-        this.setState({state:"Open_status"})
-     }
     render(){
         const {set_admin_page, data_products} = this.state;
         if(set_admin_page == "post_products"){
@@ -42,9 +36,6 @@ export default class Navigation extends React.Component{
                             </Nav.Item>
                             <Nav.Item>
                                 <Nav.Link onClick={this.StateGetProducts}>Получить список товаров</Nav.Link>
-                            </Nav.Item>
-                            <Nav.Item>
-                                <Nav.Link onClick={this.StateGetProducts}>Статус оплаты</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
                             </Nav.Item>
@@ -62,9 +53,6 @@ export default class Navigation extends React.Component{
                                 </Nav.Item>
                                 <Nav.Item>
                                     <Nav.Link>Получить список товаров</Nav.Link>
-                                </Nav.Item>
-                                <Nav.Item>
-                                    <Nav.Link>Статус оплаты</Nav.Link>
                                 </Nav.Item>
                                 <Nav.Item>
                                 </Nav.Item>

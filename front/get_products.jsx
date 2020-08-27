@@ -37,8 +37,6 @@ export default class Getproducts extends React.Component{
                              name={data_products.name} cost={data_products.cost} sku={data_products.sku} discription={data_products.discription}/>))}
                         </tbody>
             </Table>
-            <Button variant="primary">Получить товары</Button>{' '}
-            <div id="basket"></div>
             </div>
         )
     }

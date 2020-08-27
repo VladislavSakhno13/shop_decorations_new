@@ -38,11 +38,11 @@ export default class Start_page extends React.Component{
         axios.get('./backend/product.php').then((response) => this.setState({data_for_cards:response.data}));
         axios.get('./backend/carusel.php').then((response)=>this.setState({data_carusel:response.data}));
         getStaus().then((response)=> this.setState({person_data:response}));
+        axios.get(`./backend/basket.php`).then((response)=>this.setState({basket_data:response.data}))
     }
-    componentWillMount(){
-        console.log(this.state.person_data+"456")
-        axios.get(`./backend/basket.php?customer_id=${11}`).then((response)=>this.setState({basket_data:response.data}))
-      }
+    shangeStatusBasket(){
+        axios.put(`./backend/basket.php`).then((response)=>console.log(response.data));
+    }
     change_basketPage(){
         this.setState({state_page:"basket_open"})
     }
@@ -265,7 +265,7 @@ export default class Start_page extends React.Component{
                                 {basket_data.map((basket_data,index)=>{return <Basket_product index={index} cost={basket_data.cost} name={basket_data.name} status={basket_data.status}/>})}
                             </tbody>
                         </Table>
-                        <button>Оплатить</button>
+                        <button onClick={this.shangeStatusBasket}>Оплатить</button>
                     </div>
                 </div>
             )

@@ -33,7 +33,7 @@ export default class Start_page extends React.Component{
                    <div className="product_text_box">Камент изделия: {this.props.rock}</div>
                    <div className="product_text_box">SKU: {this.props.sku}</div>
                    <div className="product_text_box">Описание: {this.props.discription}</div>
-                   <div id="button-basket" onClick={this.Send_to_basket}>В корзину</div>
+                   <div className="button-basket" onClick={this.Send_to_basket}>В корзину</div>
                </div>
            </div>
        )
