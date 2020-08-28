@@ -10,6 +10,7 @@ import {adminService, getStaus, GetProduct} from './adminService.js';
 import Basket_product from './basket_product.jsx';
 import Card_products from './card_products.jsx';
 import More_product from './more_product.jsx';
+import Carusel from './Carusel.jsx';
 
 
 export default class Start_page extends React.Component{
@@ -97,6 +98,7 @@ export default class Start_page extends React.Component{
                             </ButtonGroup>
                             </Form>
                     </Navbar>
+                    <Carusel/>
                 </div>
                 <div id="main_inform">
                
