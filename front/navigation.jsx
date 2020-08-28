@@ -14,7 +14,7 @@ export default class Navigation extends React.Component{
             data_products:[]
         }
         this.StateGetProducts=this.StateGetProducts.bind(this);
-        this.StateGetProducts=this.StateGetProducts.bind(this);
+        this.StatePostProducts=this.StatePostProducts.bind(this);
     }
     StatePostProducts(){
         this.setState({set_admin_page:"post_products"})
@@ -38,6 +38,9 @@ export default class Navigation extends React.Component{
                                 <Nav.Link onClick={this.StateGetProducts}>Получить список товаров</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
+                            <Nav.Item>
+                                <Nav.Link>Добавить Администратора/Акции</Nav.Link>
+                            </Nav.Item>
                             </Nav.Item>
                 </Nav>
                 <div><Admin_page/></div>
@@ -49,12 +52,15 @@ export default class Navigation extends React.Component{
                 <div>
                     <Nav>
                                 <Nav.Item>
-                                    <Nav.Link>Добавить товары</Nav.Link>
+                                    <Nav.Link onClick={this.StatePostProducts}>Добавить товары</Nav.Link>
                                 </Nav.Item>
                                 <Nav.Item>
                                     <Nav.Link>Получить список товаров</Nav.Link>
                                 </Nav.Item>
                                 <Nav.Item>
+                                <Nav.Item>
+                                <Nav.Link>Добавить Администратора/Акции</Nav.Link>
+                                </Nav.Item>
                                 </Nav.Item>
                     </Nav>
                 <div><Getproducts/></div>

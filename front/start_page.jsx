@@ -114,7 +114,7 @@ export default class Start_page extends React.Component{
                             <Navbar.Brand href="#home">Navbar</Navbar.Brand>
                             <Nav className="mr-auto">
                             <Nav.Link onClick={this.changeStateProducts_page}>Главная страница</Nav.Link>
-                            <Nav.Link>Список товаров</Nav.Link>
+                            <Nav.Link onClick={this.changeStateProducts}>Список товаров</Nav.Link>
 
                         
 
@@ -127,7 +127,7 @@ export default class Start_page extends React.Component{
                                 
 
                                 <NavDropdown title="Пользователь" id="basic-nav-dropdown" id="menu-for-user">
-                                    <NavDropdown.Item onClick={this.open_basket}>Моя корзина</NavDropdown.Item>
+                                    <NavDropdown.Item onClick={this.change_basketPage}>Моя корзина</NavDropdown.Item>
                                     <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
                                     <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
                                     <NavDropdown.Divider />
@@ -166,7 +166,7 @@ export default class Start_page extends React.Component{
                                 
 
                                 <NavDropdown title="Пользователь" id="basic-nav-dropdown" id="menu-for-user">
-                                    <NavDropdown.Item onClick={this.open_basket}>Моя корзина</NavDropdown.Item>
+                                    <NavDropdown.Item onClick={this.change_basketPage}>Моя корзина</NavDropdown.Item>
                                     <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
                                     <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
                                     <NavDropdown.Divider />
@@ -194,7 +194,7 @@ export default class Start_page extends React.Component{
                             <Nav className="mr-auto">
                             <Nav.Link onClick={this.changeStateProducts_page}>Главная страница</Nav.Link>
                             <Nav.Link onClick={this.changeStateProducts}>Список товаров</Nav.Link>
-                            <Nav.Link id="open_admin_page">Admin page</Nav.Link>
+                            <Nav.Link id="open_admin_page" onClick={this.changeStateAdmin}>Admin page</Nav.Link>
                             </Nav>
                             <Form inline>
                             <ButtonGroup aria-label="Basic example">
@@ -203,7 +203,7 @@ export default class Start_page extends React.Component{
                                 
 
                                 <NavDropdown title="Пользователь" id="basic-nav-dropdown" id="menu-for-user">
-                                    <NavDropdown.Item onClick={this.open_basket}>Моя корзина</NavDropdown.Item>
+                                    <NavDropdown.Item onClick={this.change_basketPage}>Моя корзина</NavDropdown.Item>
                                     <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
                                     <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
                                     <NavDropdown.Divider />
@@ -239,7 +239,7 @@ export default class Start_page extends React.Component{
                                 
 
                                 <NavDropdown title="Пользователь" id="basic-nav-dropdown" id="menu-for-user">
-                                    <NavDropdown.Item onClick={this.open_basket}>Моя корзина</NavDropdown.Item>
+                                    <NavDropdown.Item onClick={this.change_basketPage}>Моя корзина</NavDropdown.Item>
                                     <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
                                     <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
                                     <NavDropdown.Divider />
