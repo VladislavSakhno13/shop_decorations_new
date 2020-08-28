@@ -5,7 +5,7 @@ import {Nav} from 'react-bootstrap';
 import axios from 'axios';
 import Getproducts from './get_products.jsx';
 import Admin_page from './adminpage.jsx';
-import Openstatus from './openstatus.jsx';
+import Add_admin_carusel from './add_admin_carusel.jsx'
 export default class Navigation extends React.Component{
     constructor(props){
         super(props);
@@ -14,7 +14,8 @@ export default class Navigation extends React.Component{
             data_products:[]
         }
         this.StateGetProducts=this.StateGetProducts.bind(this);
-        this.StateGetProducts=this.StateGetProducts.bind(this);
+        this.StatePostProducts=this.StatePostProducts.bind(this);
+        this.StateAddAdmin=this.StateAddAdmin.bind(this);
     }
     StatePostProducts(){
         this.setState({set_admin_page:"post_products"})
@@ -22,14 +23,8 @@ export default class Navigation extends React.Component{
      StateGetProducts(){
         this.setState({set_admin_page:"Get_products"})
      }
-     StateStatusProducts(){
-        this.setState({set_admin_page:"Status_products"})
-     }
-     Get_products(){
-        this.setState({state:"Get_products"})
-     }
-     Open_status(){
-        this.setState({state:"Open_status"})
+     StateAddAdmin(){
+        this.setState({set_admin_page:"AddAdminCausel"})
      }
     render(){
         const {set_admin_page, data_products} = this.state;
@@ -44,9 +39,9 @@ export default class Navigation extends React.Component{
                                 <Nav.Link onClick={this.StateGetProducts}>Получить список товаров</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                                <Nav.Link onClick={this.StateGetProducts}>Статус оплаты</Nav.Link>
-                            </Nav.Item>
                             <Nav.Item>
+                                <Nav.Link onClick={this.StateAddAdmin}>Добавить Администратора/Акции</Nav.Link>
+                            </Nav.Item>
                             </Nav.Item>
                 </Nav>
                 <div><Admin_page/></div>
@@ -58,18 +53,39 @@ export default class Navigation extends React.Component{
                 <div>
                     <Nav>
                                 <Nav.Item>
-                                    <Nav.Link>Добавить товары</Nav.Link>
+                                    <Nav.Link onClick={this.StatePostProducts}>Добавить товары</Nav.Link>
                                 </Nav.Item>
                                 <Nav.Item>
                                     <Nav.Link>Получить список товаров</Nav.Link>
                                 </Nav.Item>
                                 <Nav.Item>
-                                    <Nav.Link>Статус оплаты</Nav.Link>
-                                </Nav.Item>
                                 <Nav.Item>
+                                <Nav.Link onClick={this.StateAddAdmin}>Добавить Администратора/Акции</Nav.Link>
+                                </Nav.Item>
                                 </Nav.Item>
                     </Nav>
-                <div><Getproducts/></div>
+                <div></div>
+            </div>
+            )
+        }
+        if(set_admin_page == "AddAdminCausel"){
+            return(
+                <div>
+                    <Nav>
+                                <Nav.Item>
+                                    <Nav.Link onClick={this.StatePostProducts}>Добавить товары</Nav.Link>
+                                </Nav.Item>
+                                <Nav.Item>
+                                    <Nav.Link onClick={this.StateGetProducts}>Получить список товаров</Nav.Link>
+                                </Nav.Item>
+                                <Nav.Item>
+                                <Nav.Item>
+                                <Nav.Link>Добавить Администратора/Акции</Nav.Link>
+                                </Nav.Item>
+                                </Nav.Item>
+                    </Nav>
+                    <Add_admin_carusel/>
+                <div></div>
             </div>
             )
         }

@@ -3,9 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Form,Button,Table,Nav,Navbar,NavDropdown,FormControl,ButtonGroup} from 'react-bootstrap';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
-import Navigation from './navigation.jsx';
-import Start_page from './start_page.jsx';
-import Admin_page from './adminpage.jsx';
 import {adminService, getStaus} from './adminService.js';
 export default class Sign_in extends React.Component{
     constructor(props){
