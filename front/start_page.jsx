@@ -100,7 +100,10 @@ export default class Start_page extends React.Component{
                             </ButtonGroup>
                             </Form>
                     </Navbar>
-                    <Carusel/>
+                    <Carousel>
+                        {carusel_data.map((carusel_data)=>{return <Carusel img_carusel={'data:image/jpeg;base64,'+carusel_data.img_shares}/>})}
+                    </Carousel>
+                    
                 </div>
                 <div id="main_inform">
                
