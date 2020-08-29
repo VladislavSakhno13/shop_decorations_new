@@ -31,7 +31,6 @@ export default class Admin_page extends React.Component{
     }
     onFileChange(event){
         this.setState({img:event.target.files[0]});
-        console.log(event.target.files[0]);
     }
     metal(event,name){
         this.setState({metal:event.target.value});
