@@ -15,6 +15,8 @@ export default class Add_admin_carusel extends React.Component{
         this.Post_img_carusel=this.Post_img_carusel.bind(this);
         this.onFileChange = this.onFileChange.bind(this);
         this.discription=this.discription.bind(this);
+        this.setAdminLogin=this.setAdminLogin.bind(this);
+        this.setAdminPassword=this.setAdminLogin.bind(this);
         this.fileInput = React.createRef();
     }
     Post_img_carusel(){
@@ -33,6 +35,12 @@ export default class Add_admin_carusel extends React.Component{
         this.setState({img_carusel:event.target.files[0]});
         console.log(event.target.files[0]);
     }
+    setAdminLogin(event){
+        this.setState({login_admin:event.target.value});
+    }
+    setAdminPassword(event){
+        this.setState({password_admin:event.target.value});
+    }
     render(){
         return(
             <div>
@@ -49,9 +57,9 @@ export default class Add_admin_carusel extends React.Component{
                             <form>
                                <span>Добавить нового администратора:</span><br/>
                                <span>Логин:</span><br/>
-                               <input type="text" placeholder="Login"/><br/>
+                               <input type="text" placeholder="Login" onChange={this.setAdminLogin}/><br/>
                                <span>Пароль:</span><br/>
-                               <input type="text" placeholder="Password"/><br/>
+                               <input type="text" placeholder="Password" onChange={this.setAdminPassword}/><br/>
                                <button>Добавить Администратора</button>
                             </form>
             </div>

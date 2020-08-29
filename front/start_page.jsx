@@ -22,7 +22,8 @@ export default class Start_page extends React.Component{
             number_product: 1,
             data_carusel:"",
             person_data:[],
-            basket_data:[]
+            basket_data:[],
+            carusel_data:[]
         }
         this.changeStateProducts=this.changeStateProducts.bind(this);
         this.changeStateProducts_page=this.changeStateProducts_page.bind(this);
@@ -39,7 +40,8 @@ export default class Start_page extends React.Component{
         axios.get('./backend/product.php').then((response) => this.setState({data_for_cards:response.data}));
         axios.get('./backend/carusel.php').then((response)=>this.setState({data_carusel:response.data}));
         getStaus().then((response)=> this.setState({person_data:response}));
-        axios.get(`./backend/basket.php`).then((response)=>this.setState({basket_data:response.data}))
+        axios.get(`./backend/basket.php`).then((response)=>this.setState({basket_data:response.data}));
+        axios.get('./backend/shares.php').then((response)=>this.setState({carusel_data:response.data}));
     }
     shangeStatusBasket(){
         axios.put(`./backend/basket.php`).then((response)=>console.log(response.data));
@@ -63,8 +65,8 @@ export default class Start_page extends React.Component{
         ReactDOM.render(<Sign_in/>,document.getElementById('sign_up'))
     }
     render(){
-        const {state_page, data_for_cards,number_product,person_data,basket_data} = this.state;
-        console.log(basket_data)
+        const {state_page, data_for_cards,number_product,person_data,basket_data,carusel_data} = this.state;
+        console.log(carusel_data)
         if(state_page === "Start_page"){
         return(
             <div>
