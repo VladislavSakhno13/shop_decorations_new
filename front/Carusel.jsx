@@ -6,11 +6,11 @@ export default class Carusel extends React.Component{
     render(){
         return(
                     
-            <Carousel>
-                    <Carousel.Item>
-                    <img className="for-img-carusel"
+            
+                    <Carousel.Item id="block-carusel">
+                    <img
                         className="d-block w-100"
-                        src={this.props.img_carusel}
+                        src="https://bipbap.ru/wp-content/uploads/2019/07/Nature___Rivers_and_lakes_Pond_in_a_wooden_mill_101286_.jpg"
                         alt="Third slide"
                     />
                 
@@ -19,7 +19,7 @@ export default class Carusel extends React.Component{
                         <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
                     </Carousel.Caption>
                     </Carousel.Item>
-          </Carousel>
+          
                     
         )
     }

@@ -102,11 +102,15 @@
 .product_text_box{
     height: 50px;
 }
-.for-img-carusel{
-    width: 100px;
-    height: 100px;
+.carousel-item{
+    display: grid;
 }
-.d-block{
-    width: 100px;
-    height: 100px;
+h3{
+    color:red;
+}
+p{
+    color:red;
+}
+#block-carusel{
+    display: block;
 }

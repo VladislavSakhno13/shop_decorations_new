@@ -66,7 +66,7 @@ export default class Start_page extends React.Component{
     }
     render(){
         const {state_page, data_for_cards,number_product,person_data,basket_data,carusel_data} = this.state;
-        console.log(carusel_data)
+        //console.log(carusel_data[0])
         if(state_page === "Start_page"){
         return(
             <div>
@@ -100,13 +100,13 @@ export default class Start_page extends React.Component{
                             </ButtonGroup>
                             </Form>
                     </Navbar>
-                    <Carousel>
-                        {carusel_data.map((carusel_data)=>{return <Carusel img_carusel={'data:image/jpeg;base64,'+carusel_data.img_shares}/>})}
-                    </Carousel>
+    
                     
                 </div>
                 <div id="main_inform">
-               
+                    <Carousel>
+                        {carusel_data.map((carusel_data,index)=>{return <Carusel key={index}/>})}
+                    </Carousel>
                 </div>
  
             </div>
