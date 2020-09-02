@@ -26,7 +26,7 @@ getStaus().then(function(response){
 document.getElementById('out').onclick=function(){
     axios.get('./backend/exit.php')
     .then(function(response){
-            ReactDOM.unmountComponentAtNode(document.getElementById('main_page'));
+            //ReactDOM.unmountComponentAtNode(document.getElementById('main_page'));
             document.getElementById('sign-up').style.display = 'block'
             document.getElementById('sign-in').style.display = 'block'
             document.getElementById('out').style.display = 'none'

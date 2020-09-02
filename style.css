@@ -3,20 +3,24 @@
     padding: 0;
     box-sizing: border-box;
 }
+body{
+   
+}
+#page_site{
+    position: absolute;
+}
 #admin_nav{
     max-width: 1200px;
     margin: auto;
 }
-#form_sign_up{
+.form_sign_up{
     background-color: #fff;
     margin: auto;
-    margin-top: 5%;
-    left: 50%;
     border: 1px solid #000;
-
 }
 #sign_up{
-    position: relative;
+    position: absolute;
+    z-index: 1;
     width: 30%;
     height: 450px;
     margin: auto;
@@ -69,9 +73,6 @@
 .open-more:hover{
     background-color: #5A5A5A;
 }
-#carusel{
-    width: 80%;
-}
 #prosuct_box{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -102,15 +103,12 @@
 .product_text_box{
     height: 50px;
 }
-.carousel-item{
-    display: grid;
-}
 h3{
     color:red;
 }
 p{
     color:red;
 }
-#block-carusel{
+#g{
     display: block;
 }

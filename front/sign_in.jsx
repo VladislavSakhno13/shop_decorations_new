@@ -44,7 +44,7 @@ export default class Sign_in extends React.Component{
     }
     render(){
         return(
-            <div id="form_sign_up">
+            <div className="form_sign_up">
                  <Form>
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Ведите логин</Form.Label>

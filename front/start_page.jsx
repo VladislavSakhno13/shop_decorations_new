@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
 import {Form,Button,Table,Nav,Navbar,NavDropdown,FormControl,ButtonGroup,Carousel,Item} from 'react-bootstrap';
 import axios from 'axios';
 import Sign_up from './sign_up.jsx';
@@ -64,9 +64,10 @@ export default class Start_page extends React.Component{
     openSign_in(){
         ReactDOM.render(<Sign_in/>,document.getElementById('sign_up'))
     }
+
     render(){
         const {state_page, data_for_cards,number_product,person_data,basket_data,carusel_data} = this.state;
-        //console.log(carusel_data[0])
+        console.log(basket_data)
         if(state_page === "Start_page"){
         return(
             <div>
@@ -101,11 +102,10 @@ export default class Start_page extends React.Component{
                             </Form>
                     </Navbar>
     
-                    
-                </div>
-                <div id="main_inform">
                     <Carousel>
-                        {carusel_data.map((carusel_data,index)=>{return <Carusel key={index}/>})}
+                        <Carusel img={"https://www.ejin.ru/wp-content/uploads/2019/05/kanada.jpg"}/>
+                        <Carusel img={"https://www.anypics.ru/download.php?file=201211/1024x768/anypics.ru-39644.jpg"}/>
+                        <Carusel img={"https://www.anypics.ru/download.php?file=201211/1024x768/anypics.ru-39644.jpg"}/>
                     </Carousel>
                 </div>
  
@@ -237,7 +237,7 @@ export default class Start_page extends React.Component{
                             <Nav className="mr-auto">
                             <Nav.Link onClick={this.changeStateProducts_page}>Главная страница</Nav.Link>
                             <Nav.Link onClick={this.changeStateProducts}>Список товаров</Nav.Link>
-                            <Nav.Link id="open_admin_page">Admin page</Nav.Link>
+                            <Nav.Link id="open_admin_page" onClick={this.changeStateAdmin}>Admin page</Nav.Link>
                             </Nav>
                             <Form inline>
                             <ButtonGroup aria-label="Basic example">
