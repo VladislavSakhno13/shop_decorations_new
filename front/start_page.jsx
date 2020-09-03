@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 //import 'bootstrap/dist/css/bootstrap.min.css';
-import {Form,Button,Table,Nav,Navbar,NavDropdown,FormControl,ButtonGroup,Carousel,Item} from 'react-bootstrap';
+import {Form,Button,Table,Nav,Navbar,NavDropdown,ButtonGroup,Carousel,Jumbotron,Container} from 'react-bootstrap';
 import axios from 'axios';
 import Sign_up from './sign_up.jsx';
 import Sign_in from './sign_in.jsx';
@@ -102,11 +102,35 @@ export default class Start_page extends React.Component{
                             </Form>
                     </Navbar>
     
-                    <Carousel>
+                    <Carousel className="carusel-box">
                         <Carusel img={"https://www.ejin.ru/wp-content/uploads/2019/05/kanada.jpg"}/>
                         <Carusel img={"https://www.anypics.ru/download.php?file=201211/1024x768/anypics.ru-39644.jpg"}/>
                         <Carusel img={"https://www.anypics.ru/download.php?file=201211/1024x768/anypics.ru-39644.jpg"}/>
                     </Carousel>
+                    
+                    <Jumbotron fluid>
+                            <Container>
+                                <h1>Fluid jumbotron</h1>
+                                <p>
+                                This is a modified jumbotron that occupies the entire horizontal space of
+                                its parent.
+                                </p>
+                            </Container>
+                            <Container>
+                                <h1>Fluid jumbotron</h1>
+                                <p>
+                                This is a modified jumbotron that occupies the entire horizontal space of
+                                its parent.
+                                </p>
+                            </Container>
+                            <Container>
+                                <h1>Fluid jumbotron</h1>
+                                <p>
+                                This is a modified jumbotron that occupies the entire horizontal space of
+                                its parent.
+                                </p>
+                            </Container>
+                    </Jumbotron>
                 </div>
  
             </div>
